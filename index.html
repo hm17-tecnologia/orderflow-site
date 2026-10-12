@@ -193,7 +193,11 @@ section{padding:96px 0}
 .calc input[type=range]{width:100%;margin-top:10px;accent-color:var(--orange-d);height:28px}
 .calc .cmp{margin-top:22px;display:flex;flex-direction:column;gap:14px}
 .calc .bar{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline;font-size:15px}
-.calc .bar span{color:var(--ink2)}
+.calc .bar span{color:var(--ink2);display:flex;align-items:center;gap:6px}
+.calc .bar span img{border-radius:5px}
+.calc .of-name{color:var(--orange-d);font-weight:800}
+.calc h3 .vs{color:var(--muted);font-weight:500}
+.calc .bar.of span{font-size:16px}
 .calc .bar b{font:800 18px/1 var(--display)}
 .calc .bar i{grid-column:1/-1;display:block;height:12px;border-radius:999px;background:var(--ground);overflow:hidden}
 .calc .bar i::before{content:"";display:block;height:100%;width:var(--w,0%);border-radius:inherit;background:var(--c);transition:width .25s}
@@ -412,7 +416,7 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section id="preco">
   <div class="wrap">
     <h2>Um preço só, com tudo dentro</h2>
-    <p class="lead">Marketplaces cobram de 12% a 30% de cada pedido. Aqui o valor é fixo, venda você 10 ou 1.000 pedidos.</p>
+    <p class="lead">Aplicativos como iFood, Keeta e Rappi ficam com uma parte de cada pedido. No OrderFlow o valor é fixo, venda você 10 ou 1.000 pedidos.</p>
     <div class="price-grid">
       <div class="plan">
         <div style="font-weight:600;font-size:17px">Plano completo</div>
@@ -432,26 +436,26 @@ footer a{text-decoration:none;color:#CBC3C5}
         <div class="fine">Sem fidelidade nem multa (aviso de 60 dias).</div>
       </div>
       <div class="calc">
-        <h3>Quanto você deixa de pagar ao marketplace</h3>
-        <p class="sub">Compare o que o aplicativo de delivery leva das suas vendas com a mensalidade fixa do OrderFlow.</p>
+        <h3>iFood, Keeta e Rappi <span class="vs">x</span> <span class="of-name">OrderFlow</span></h3>
+        <p class="sub">Veja quanto os aplicativos de delivery levam das suas vendas e quanto fica no seu caixa com o OrderFlow.</p>
         <label for="fat">Suas vendas por mês no delivery
           <output id="fatOut" for="fat">R$ 10.000</output>
         </label>
         <input id="fat" type="range" min="2000" max="60000" step="1000" value="10000">
-        <label for="com">Comissão que o marketplace cobra de você
+        <label for="com">Comissão que o aplicativo cobra de você
           <output id="comOut" for="com">25%</output>
         </label>
         <input id="com" type="range" min="12" max="30" step="1" value="25">
         <div class="cmp">
-          <div class="bar mk"><span>Marketplace leva</span><b id="mk">R$ 2.500/mês</b><i id="mkBar"></i></div>
-          <div class="bar of"><span>OrderFlow · valor fixo</span><b>R$ 149,80/mês</b><i id="ofBar"></i></div>
+          <div class="bar mk"><span>iFood, Keeta, Rappi levam</span><b id="mk">R$ 2.500/mês</b><i id="mkBar"></i></div>
+          <div class="bar of"><span><img src="assets/brand/orderflow-icone-96.png" alt="" width="20" height="20"><b class="of-name">OrderFlow</b> · valor fixo</span><b>R$ 149,80/mês</b><i id="ofBar"></i></div>
         </div>
         <div class="win" aria-live="polite">
-          <small>Fica no seu caixa</small>
+          <small>Com o OrderFlow, fica no seu caixa</small>
           <strong id="sv">R$ 2.350/mês</strong>
           <em id="svY">R$ 28.202 em um ano</em>
         </div>
-        <p class="note">Simulação só com a comissão. Taxas de cartão e de entrega existem nos dois casos.</p>
+        <p class="note">Simulação só com a comissão. A comissão de cada aplicativo varia conforme o plano contratado; taxas de cartão e de entrega existem nos dois casos.</p>
       </div>
     </div>
   </div>
