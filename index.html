@@ -243,6 +243,9 @@ section{padding:96px 0}
 .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
 .form .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
 .form .err{color:#A3321F;font-size:14px;font-weight:600;min-height:1em}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .note{margin:0;font-size:13px;color:var(--muted,#6B6264);font-weight:400}
+.form .note a{color:inherit}
 .contact-links{margin-top:28px;display:flex;flex-direction:column;gap:12px;font-size:16px}
 .contact-links a{color:#fff;text-decoration:none;display:flex;gap:10px;align-items:center}
 @media(max-width:900px){.contact .wrap{grid-template-columns:1fr}.form .two{grid-template-columns:minmax(0,1fr)}}
@@ -513,14 +516,19 @@ footer a{text-decoration:none;color:#CBC3C5}
         <label>Seu nome<input id="f-nome" autocomplete="name" required></label>
         <label>WhatsApp<input id="f-whats" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></label>
       </div>
-      <label>Nome da loja<input id="f-estab" required></label>
       <div class="two">
-        <label>Tipo de negócio<select id="f-seg"><option>Pizzaria</option><option>Hamburgueria</option><option>Restaurante</option><option>Lanchonete</option><option>Cafeteria</option><option>Doceria / Confeitaria</option><option>Açaí / Sorvetes</option><option>Marmitaria</option><option>Bar</option><option>Padaria</option><option>Outro</option></select></label>
+        <label>Nome da loja<input id="f-estab" required></label>
+        <label>Cidade<input id="f-cidade" autocomplete="address-level2" placeholder="Ex.: Santos"></label>
+      </div>
+      <div class="two">
+        <label>Tipo de negócio<select id="f-seg"><option>Pizzaria</option><option>Hamburgueria</option><option>Restaurante / Lanchonete</option><option>Marmitaria</option><option>Doceria / Confeitaria</option><option>Açaí / Sorvetes</option><option>Padaria / Cafeteria</option><option>Bar / Adega</option><option>Pet shop</option><option>Gás e água</option><option>Mercado / Hortifruti</option><option>Outro</option></select></label>
         <label>Forma de pagamento<select id="f-pgto"><option>Cartão · R$ 149,80/mês</option><option>PIX · R$ 169,80/mês</option><option>Plano de 2 anos</option></select></label>
       </div>
       <label>Mensagem (opcional)<textarea id="f-msg" rows="3" placeholder="Ex.: hoje vendo pelo iFood e pelo WhatsApp"></textarea></label>
+      <label class="hp" aria-hidden="true">Site<input id="f-site" tabindex="-1" autocomplete="off"></label>
       <div class="err" id="f-err" role="alert"></div>
-      <button class="btn btn-main" type="submit">Enviar pelo WhatsApp</button>
+      <button class="btn btn-main" type="submit" id="f-btn">Enviar pelo WhatsApp</button>
+      <p class="note">Ao enviar, você concorda com a <a href="privacidade.html">Política de Privacidade</a>. Usamos seus dados só para falar com você sobre o OrderFlow.</p>
     </form>
   </div>
 </section>
@@ -601,15 +609,54 @@ function closeMenu(){document.getElementById('mnav').classList.remove('open');do
 /* WhatsApp flutuante */
 window.addEventListener('scroll',function(){document.getElementById('waFloat').classList.toggle('show',window.scrollY>500)},{passive:true});
 
-/* Formulário → WhatsApp */
+/* Origem da visita (UTM, clique de anúncio) guardada para o formulário */
+var OF_API='https://pedido.orderflow.tec.br';
+var ofSrc=(function(){
+  var k='of_src', saved={};
+  try{saved=JSON.parse(sessionStorage.getItem(k)||'{}')}catch(e){}
+  var p=new URLSearchParams(location.search), got={};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(n){var v=p.get(n);if(v)got[n]=v.slice(0,300)});
+  if(Object.keys(got).length||!saved.landing){
+    saved=Object.assign({},Object.keys(got).length?{}:saved,got,{landing:location.pathname+location.search,referrer:document.referrer&&document.referrer.indexOf(location.host)<0?document.referrer:(saved.referrer||'')});
+    try{sessionStorage.setItem(k,JSON.stringify(saved))}catch(e){}
+  }
+  return saved;
+})();
+
+/* Pixel da Meta e Google Analytics: IDs vêm do painel (aba Marketing) */
+function ofTrack(ev,params){try{if(window.fbq)fbq('track',ev,params||{});if(window.gtag)gtag('event',ev==='Lead'?'generate_lead':ev==='Contact'?'contact':ev.toLowerCase(),params||{})}catch(e){}}
+fetch(OF_API+'/api/public/site-config').then(function(r){return r.json()}).then(function(c){
+  if(c.pixel){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',c.pixel);fbq('track','PageView');
+  }
+  if(c.ga){
+    var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+c.ga;document.head.appendChild(g);
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',c.ga);
+  }
+}).catch(function(){});
+
+/* Abrir o formulário conta como interesse; botões de WhatsApp contam como contato */
+(function(){var seen=false,f=document.getElementById('form');
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){if(!seen&&es[0].isIntersecting){seen=true;ofTrack('ViewContent',{content_name:'formulario'})}},{threshold:.5}).observe(f);
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventListener('click',function(){ofTrack('Contact')})});
+})();
+
+/* Formulário → grava no painel e abre o WhatsApp */
 document.getElementById('form').addEventListener('submit',function(e){
   e.preventDefault();
   var g=function(id){return document.getElementById(id).value.trim()};
   var nome=g('f-nome'), whats=g('f-whats'), estab=g('f-estab'), err=document.getElementById('f-err');
   if(!nome||!whats||!estab){err.textContent='Preencha seu nome, WhatsApp e o nome da loja.';(!nome?document.getElementById('f-nome'):!whats?document.getElementById('f-whats'):document.getElementById('f-estab')).focus();return}
+  var dig=whats.replace(/\D/g,'');
+  if(dig.length<10||dig.length>13){err.textContent='Confira o WhatsApp com DDD.';document.getElementById('f-whats').focus();return}
   err.textContent='';
-  var t='*Novo contato pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
+  var cidade=g('f-cidade');
+  var t='*Novo contato pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
   if(g('f-msg')) t+='\n\n*Mensagem:*\n'+g('f-msg');
+  var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site')},ofSrc);
+  try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
+  ofTrack('Lead',{content_name:g('f-seg')});
   window.open('https://wa.me/5511982051205?text='+encodeURIComponent(t),'_blank');
 });
 </script>
