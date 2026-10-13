@@ -241,6 +241,8 @@ section{padding:96px 0}
 .form input,.form select,.form textarea{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:12px;font:16px var(--body);color:var(--ink);background:#fff;width:100%;min-width:0}
 .form textarea{padding:12px 14px;resize:vertical}
 .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
+.form label.optin{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;font-size:14px;color:var(--muted);line-height:1.45;cursor:pointer}
+.form label.optin input{width:18px;height:18px;min-height:0;min-width:18px;padding:0;margin-top:2px;accent-color:var(--orange)}
 .form-ok{display:none;text-align:center;padding:12px 4px;gap:14px;justify-items:center}
 .form.sent>*:not(.form-ok){display:none}
 .form.sent .form-ok{display:grid}
@@ -533,6 +535,7 @@ footer a{text-decoration:none;color:#CBC3C5}
         <label>Forma de pagamento<select id="f-pgto"><option>Cartão · R$ 149,80/mês</option><option>PIX · R$ 169,80/mês</option><option>Plano de 2 anos</option></select></label>
       </div>
       <label>Mensagem (opcional)<textarea id="f-msg" rows="3" placeholder="Ex.: hoje vendo pelo iFood e pelo WhatsApp"></textarea></label>
+      <label class="optin"><input type="checkbox" id="f-optin"><span>Quero receber novidades e ofertas do OrderFlow por WhatsApp e e-mail (opcional; você pode cancelar quando quiser)</span></label>
       <label class="hp" aria-hidden="true">Site<input id="f-site" tabindex="-1" autocomplete="off"></label>
       <div class="err" id="f-err" role="alert"></div>
       <button class="btn btn-main" type="submit" id="f-btn">Enviar pelo WhatsApp</button>
@@ -669,7 +672,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   var cidade=g('f-cidade');
   var t='*Novo contato pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
   if(g('f-msg')) t+='\n\n*Mensagem:*\n'+g('f-msg');
-  var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site')},ofSrc);
+  var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site'),optin:document.getElementById('f-optin').checked},ofSrc);
   try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
   ofTrack('Lead',{content_name:g('f-seg')});
   function fmtTel(d){d=d.replace(/^55(?=\d{10,11}$)/,'');return d.length>=10?'('+d.slice(0,2)+')\u00a0'+d.slice(2,d.length-4)+'\u2011'+d.slice(-4):d}
