@@ -241,6 +241,14 @@ section{padding:96px 0}
 .form input,.form select,.form textarea{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:12px;font:16px var(--body);color:var(--ink);background:#fff;width:100%;min-width:0}
 .form textarea{padding:12px 14px;resize:vertical}
 .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft)}
+.form-ok{display:none;text-align:center;padding:12px 4px;gap:14px;justify-items:center}
+.form.sent>*:not(.form-ok){display:none}
+.form.sent .form-ok{display:grid}
+.form-ok .ok-ico{width:56px;height:56px;border-radius:50%;background:#E3F3EA;color:#1F6B45;display:flex;align-items:center;justify-content:center}
+.form-ok h3{margin:0;font:700 22px/1.2 var(--display,inherit)}
+.form-ok p{margin:0;color:var(--muted,#5E5759);font-size:15.5px;line-height:1.5;max-width:420px}
+.form-ok .btn{width:100%;max-width:360px}
+.form-ok .again{background:none;border:0;color:var(--muted,#5E5759);font:500 14px var(--body);text-decoration:underline;cursor:pointer;padding:6px}
 .form .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
 .form .err{color:#A3321F;font-size:14px;font-weight:600;min-height:1em}
 .form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -529,6 +537,13 @@ footer a{text-decoration:none;color:#CBC3C5}
       <div class="err" id="f-err" role="alert"></div>
       <button class="btn btn-main" type="submit" id="f-btn">Enviar pelo WhatsApp</button>
       <p class="note">Ao enviar, você concorda com a <a href="privacidade.html">Política de Privacidade</a>. Usamos seus dados só para falar com você sobre o OrderFlow.</p>
+      <div class="form-ok" id="f-ok" role="status" aria-live="polite">
+        <span class="ok-ico" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h3 id="f-ok-t">Recebemos seu contato!</h3>
+        <p id="f-ok-p">Uma pessoa da equipe vai te chamar no WhatsApp em breve.</p>
+        <a class="btn btn-main" id="f-ok-wa" href="https://wa.me/5511982051205" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+        <button type="button" class="again" id="f-again">Enviar outro contato</button>
+      </div>
     </form>
   </div>
 </section>
@@ -657,8 +672,18 @@ document.getElementById('form').addEventListener('submit',function(e){
   var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site')},ofSrc);
   try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
   ofTrack('Lead',{content_name:g('f-seg')});
-  window.open('https://wa.me/5511982051205?text='+encodeURIComponent(t),'_blank');
+  function fmtTel(d){d=d.replace(/^55(?=\d{10,11}$)/,'');return d.length>=10?'('+d.slice(0,2)+')\u00a0'+d.slice(2,d.length-4)+'\u2011'+d.slice(-4):d}
+  var wa='https://wa.me/5511982051205?text='+encodeURIComponent(t);
+  // Confirmação na própria página: se o navegador bloquear a nova aba, o botão abre o WhatsApp
+  var form=document.getElementById('form');
+  document.getElementById('f-ok-t').textContent='Recebemos seu contato, '+nome.split(/\s+/)[0]+'!';
+  document.getElementById('f-ok-p').textContent='Uma pessoa da equipe vai te chamar no WhatsApp '+fmtTel(dig)+' em horário comercial. Se quiser adiantar, a conversa já está pronta:';
+  document.getElementById('f-ok-wa').href=wa;
+  form.classList.add('sent');
+  form.scrollIntoView({behavior:'smooth',block:'center'});
+  window.open(wa,'_blank');
 });
+document.getElementById('f-again').addEventListener('click',function(){var f=document.getElementById('form');f.reset();f.classList.remove('sent');document.getElementById('f-nome').focus()});
 </script>
 </body>
 </html>
