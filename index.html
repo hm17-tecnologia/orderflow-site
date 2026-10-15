@@ -216,7 +216,9 @@ section{padding:96px 0}
 .svc-grid article{background:#fff;border-radius:var(--r);padding:26px}
 .svc-grid h3{font-size:21px;font-weight:700;margin-bottom:8px}
 .svc-grid p{margin:0;color:var(--ink2);font-size:15.5px}
-@media(max-width:820px){.svc-grid{grid-template-columns:1fr}}
+.svc-grid.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1080px){.svc-grid.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.svc-grid,.svc-grid.g4{grid-template-columns:1fr}}
 
 /* demo */
 .demo .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;border-radius:24px;background:var(--orange-soft);padding:44px}
@@ -348,7 +350,7 @@ footer a{text-decoration:none;color:#CBC3C5}
     <ol class="steps">
       <li><h3>Você envia o cardápio</h3><p>Fotos, preços, logo e horários. Pode ser uma foto do cardápio impresso ou uma planilha.</p></li>
       <li><h3>A gente monta a loja</h3><p>Seu logo, suas cores, sabores, bordas e adicionais configurados. Você recebe o link e a senha do painel.</p></li>
-      <li><h3>Você divulga e recebe</h3><p>Coloque o link no Instagram, no Google e no WhatsApp. Os pedidos caem no painel na hora.</p></li>
+      <li><h3>Você divulga e recebe</h3><p>Link pronto para o Instagram, o Google e o WhatsApp, e cartaz com QR Code para o balcão. Os pedidos caem no painel na hora.</p></li>
     </ol>
   </div>
 </section>
@@ -406,6 +408,19 @@ footer a{text-decoration:none;color:#CBC3C5}
   </div>
 </section>
 
+<section class="svc" id="vender-mais">
+  <div class="wrap">
+    <h2>Feito para vender mais</h2>
+    <p class="lead">Ferramentas que o próprio gerente liga e ajusta no painel, sem depender de ninguém.</p>
+    <div class="svc-grid g4">
+      <article><h3>Taxa de entrega do seu jeito</h3><p>Fixa, grátis, por bairro ou por distância da loja. O cliente vê a taxa certa antes de fechar o pedido.</p></article>
+      <article><h3>Cupons de desconto</h3><p>Desconto no primeiro pedido, entrega grátis acima de um valor ou promoção com data para acabar.</p></article>
+      <article><h3>QR Code e links da loja</h3><p>Cartaz pronto para imprimir e links para cada rede. Você vê de onde vieram os pedidos.</p></article>
+      <article><h3>Loja pronta em poucos passos</h3><p>Uma lista no painel mostra o que falta para a loja começar a vender bem.</p></article>
+    </div>
+  </div>
+</section>
+
 <section class="video" id="video">
   <div class="wrap">
     <div>
@@ -415,6 +430,7 @@ footer a{text-decoration:none;color:#CBC3C5}
         <li>Cardápio online com a sua marca</li>
         <li>Pagamento online com confirmação automática</li>
         <li>Todos os pedidos num painel só</li>
+        <li>Cupons, taxa por bairro e QR Code de divulgação</li>
         <li>Relatórios, avaliações e assistente com IA</li>
       </ul>
       <a class="btn btn-main" href="#contato">Quero uma demonstração</a>
@@ -439,6 +455,9 @@ footer a{text-decoration:none;color:#CBC3C5}
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Cardápio online com a sua marca</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Painel de pedidos</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pagamento online</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Taxa de entrega por bairro ou distância</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Cupons de desconto</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>QR Code e links de divulgação</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Relatórios e clientes</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Assistente com IA (50 consultas/mês)</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Avaliações dos clientes</li>
@@ -503,6 +522,8 @@ footer a{text-decoration:none;color:#CBC3C5}
       <details><summary>Quanto tempo leva para a loja entrar no ar?</summary><p>Até 24 horas úteis depois que você envia cardápio, logo e informações da loja. Você revisa tudo antes de divulgar.</p></details>
       <details><summary>Tem comissão sobre os pedidos?</summary><p>Não. Você paga só a mensalidade. O dinheiro do pedido vai direto para você: pagamento online na sua conta, dinheiro e cartão na entrega ou na retirada.</p></details>
       <details><summary>Como funciona o pagamento online?</summary><p>O cliente paga no próprio cardápio e o pedido aparece como pago sozinho, sem comprovante. O dinheiro cai direto na conta da loja.</p></details>
+      <details><summary>Posso cobrar a entrega por bairro ou por distância?</summary><p>Sim. No painel você escolhe taxa fixa, entrega grátis, uma taxa para cada bairro ou faixas de distância a partir da loja. Dá para mudar quando quiser.</p></details>
+      <details><summary>Dá para criar cupom de desconto?</summary><p>Sim. Você cria e ativa os cupons no painel: porcentagem, valor em reais ou entrega grátis, com regras como primeiro pedido, valor mínimo e data para acabar.</p></details>
       <details><summary>Preciso entender de tecnologia?</summary><p>Não. A gente configura tudo e treina você e a sua equipe. Depois, mudar preço, foto ou horário é feito no próprio painel.</p></details>
       <details><summary>Funciona no celular?</summary><p>Sim. O cardápio foi feito para o celular do cliente, e o painel funciona no computador, no tablet e no celular.</p></details>
       <details><summary>O que o assistente com IA faz?</summary><p>Ele analisa os números da sua loja (cardápio, vendas, horários, clientes e avaliações) e sugere ações práticas. São 50 consultas por mês no plano; se precisar de mais, dá para ampliar no painel para 150 consultas (+ R$ 30,00 por mês) ou 500 (+ R$ 110,00 por mês). Ele só sugere: nada muda no seu cardápio sem você.</p></details>
