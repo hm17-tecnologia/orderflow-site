@@ -524,7 +524,7 @@ footer a{text-decoration:none;color:#CBC3C5}
     <form class="form" id="form" novalidate>
       <div class="two">
         <label>Seu nome<input id="f-nome" autocomplete="name" required></label>
-        <label>WhatsApp<input id="f-whats" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></label>
+        <label>WhatsApp<input id="f-whats" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(11) 99999-9999" required></label>
       </div>
       <div class="two">
         <label>Nome da loja<input id="f-estab" required></label>
@@ -661,6 +661,19 @@ fetch(OF_API+'/api/public/site-config').then(function(r){return r.json()}).then(
   document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventListener('click',function(){ofTrack('Contact')})});
 })();
 
+/* WhatsApp: só números, no formato (11) 99999-9999 (aceita colar com +55) */
+(function(){var w=document.getElementById('f-whats');
+  w.addEventListener('input',function(){
+    var d=w.value.replace(/\D/g,'');
+    if(d.length>11&&d.indexOf('55')===0)d=d.slice(2);
+    d=d.slice(0,11);
+    var o=d;
+    if(d.length>2)o='('+d.slice(0,2)+') '+d.slice(2);
+    if(d.length>6)o='('+d.slice(0,2)+') '+d.slice(2,d.length-4)+'-'+d.slice(-4);
+    w.value=o;
+  });
+})();
+
 /* Formulário → grava no painel e abre o WhatsApp */
 document.getElementById('form').addEventListener('submit',function(e){
   e.preventDefault();
@@ -668,7 +681,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   var nome=g('f-nome'), whats=g('f-whats'), estab=g('f-estab'), err=document.getElementById('f-err');
   if(!nome||!whats||!estab){err.textContent='Preencha seu nome, WhatsApp e o nome da loja.';(!nome?document.getElementById('f-nome'):!whats?document.getElementById('f-whats'):document.getElementById('f-estab')).focus();return}
   var dig=whats.replace(/\D/g,'');
-  if(dig.length<10||dig.length>13){err.textContent='Confira o WhatsApp com DDD.';document.getElementById('f-whats').focus();return}
+  if(dig.length<10||dig.length>11||!/^[1-9]{2}/.test(dig)){err.textContent='Confira o WhatsApp com DDD.';document.getElementById('f-whats').focus();return}
   err.textContent='';
   var cidade=g('f-cidade');
   var t='*Novo contato pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
