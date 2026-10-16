@@ -56,6 +56,11 @@ section{padding:96px 0}
 @media(max-width:720px){section{padding:64px 0}body{font-size:16px}}
 
 /* topo */
+.promo{background:var(--ink);color:#fff;font-size:15px;text-align:center;padding:10px 16px;line-height:1.4}
+.promo b{color:#FFB48A}
+.promo a{color:#fff;font-weight:700;margin-left:8px;white-space:nowrap}
+.promo-note{font-size:13px;color:var(--muted);margin:10px 0 0;line-height:1.45}
+.no-promo .promo,.no-promo .promo-note{display:none}
 .top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:28px;height:68px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 20px/1 var(--display);letter-spacing:-.02em}
@@ -273,6 +278,7 @@ footer a{text-decoration:none;color:#CBC3C5}
 </head>
 <body>
 
+<div class="promo" id="promo" role="note"><b>1º mês grátis</b> para as 10 primeiras lojas da Baixada Santista · até 31/10 <a href="#contato">Garantir minha vaga</a></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio"><img src="assets/brand/orderflow-icone-96.png" width="36" height="36" alt="">OrderFlow</a>
@@ -283,7 +289,7 @@ footer a{text-decoration:none;color:#CBC3C5}
       <a href="#preco">Preço</a>
       <a href="#perguntas">Perguntas</a>
     </nav>
-    <a class="btn btn-main" href="#contato">Quero uma demonstração</a>
+    <a class="btn btn-main" href="#contato" data-promo="1º mês grátis">Quero uma demonstração</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menu" onclick="toggleMenu(this)">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -305,7 +311,7 @@ footer a{text-decoration:none;color:#CBC3C5}
       <h1><span>Seu delivery.</span><span>Sua marca.</span><span>Zero comissão.</span></h1>
       <p class="lead">Cardápio online com o seu logo e as suas cores, pedidos organizados num painel, pagamento online que se confirma sozinho e um assistente com IA que analisa o seu negócio. Tudo por uma mensalidade fixa.</p>
       <div class="cta-row">
-        <a class="btn btn-main" href="#contato">Quero uma demonstração</a>
+        <a class="btn btn-main" href="#contato" data-promo="Quero meu 1º mês grátis">Quero uma demonstração</a>
         <a class="btn btn-ghost" href="https://pedido.orderflow.tec.br/dona-nonna" target="_blank" rel="noopener">Abrir a loja de exemplo</a>
       </div>
       <ul class="facts">
@@ -535,7 +541,7 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section class="contact" id="contato">
   <div class="wrap">
     <div>
-      <h2>Vamos montar a sua loja</h2>
+      <h2 data-promo="Garanta o 1º mês grátis">Vamos montar a sua loja</h2>
       <p class="lead">Conte um pouco sobre o seu negócio. A conversa continua no WhatsApp, com uma pessoa da equipe.</p>
       <div class="contact-links">
         <a href="https://wa.me/5511982051205?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20OrderFlow." target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.3-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>(11) 98205-1205</a>
@@ -559,7 +565,8 @@ footer a{text-decoration:none;color:#CBC3C5}
       <label class="optin"><input type="checkbox" id="f-optin"><span>Quero receber novidades e ofertas do OrderFlow por WhatsApp e e-mail (opcional; você pode cancelar quando quiser)</span></label>
       <label class="hp" aria-hidden="true">Site<input id="f-site" tabindex="-1" autocomplete="off"></label>
       <div class="err" id="f-err" role="alert"></div>
-      <button class="btn btn-main" type="submit" id="f-btn">Quero uma demonstração</button>
+      <button class="btn btn-main" type="submit" id="f-btn" data-promo="Quero meu 1º mês grátis">Quero uma demonstração</button>
+      <p class="promo-note">Campanha válida para as 10 primeiras lojas que fecharem até 31/10/2026. A partir do 2º mês, R$ 149,80 no cartão, com cobrança automática. Implantação conforme a operação. Sem fidelidade.</p>
       <p class="note" style="margin-top:-6px;text-align:center">Respondemos pelo WhatsApp em horário comercial.</p>
       <p class="note">Ao enviar, você concorda com a <a href="privacidade.html">Política de Privacidade</a>. Usamos seus dados só para falar com você sobre o OrderFlow.</p>
       <div class="form-ok" id="f-ok" role="status" aria-live="polite">
@@ -646,6 +653,11 @@ function closeMenu(){document.getElementById('mnav').classList.remove('open');do
   f.addEventListener('input',up);c.addEventListener('input',up);up();
 })();
 
+/* Campanha 1º mês grátis: some sozinha depois de 31/10/2026 */
+var OF_PROMO=Date.now()<new Date('2026-11-01T00:00:00-03:00').getTime();
+if(OF_PROMO){document.querySelectorAll('[data-promo]').forEach(function(el){el.textContent=el.getAttribute('data-promo')})}
+else document.documentElement.classList.add('no-promo');
+
 /* WhatsApp flutuante */
 window.addEventListener('scroll',function(){document.getElementById('waFloat').classList.toggle('show',window.scrollY>500)},{passive:true});
 
@@ -706,8 +718,9 @@ document.getElementById('form').addEventListener('submit',function(e){
   err.textContent='';
   var cidade=g('f-cidade');
   var t='*Novo contato pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
+  if(OF_PROMO) t='*Campanha: 1º mês grátis*\n'+t;
   if(g('f-msg')) t+='\n\n*Mensagem:*\n'+g('f-msg');
-  var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site'),optin:document.getElementById('f-optin').checked},ofSrc);
+  var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:(OF_PROMO?'[Campanha 1º mês grátis] ':'')+g('f-msg'),website:g('f-site'),optin:document.getElementById('f-optin').checked},ofSrc);
   try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
   ofTrack('Lead',{content_name:g('f-seg')});
   function fmtTel(d){d=d.replace(/^55(?=\d{10,11}$)/,'');return d.length>=10?'('+d.slice(0,2)+')\u00a0'+d.slice(2,d.length-4)+'\u2011'+d.slice(-4):d}
