@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OrderFlow — Delivery próprio, sem comissão</title>
-<meta name="description" content="Cardápio online com a sua marca, painel de pedidos, pagamento online, relatórios e assistente com IA. Sem comissão por pedido. R$ 149,80/mês.">
+<title>OrderFlow — Cardápio digital com a sua marca, que recebe e cobra sozinho</title>
+<meta name="description" content="Sexta à noite, WhatsApp lotado? O cliente monta o pedido sozinho num cardápio com a sua marca, já paga, e o pedido chega pronto para a cozinha. Prévia do seu cardápio grátis.">
 <meta name="keywords" content="delivery próprio, cardápio digital, sistema para restaurante, delivery sem comissão, white label delivery, plataforma delivery, gestão de pedidos, orderflow">
 <meta name="author" content="OrderFlow · HM17 Desenvolvimento de Software sob Encomenda LTDA">
 <meta name="robots" content="index, follow">
@@ -13,8 +13,8 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://orderflow.tec.br">
 <meta property="og:site_name" content="OrderFlow">
-<meta property="og:title" content="OrderFlow — Delivery próprio, sem comissão">
-<meta property="og:description" content="Cardápio online com a sua marca, painel de pedidos, pagamento online e assistente com IA. R$ 149,80/mês, sem comissão por pedido.">
+<meta property="og:title" content="OrderFlow — Sexta à noite, WhatsApp lotado?">
+<meta property="og:description" content="O cliente monta o pedido sozinho num cardápio com a sua marca, já paga, e o pedido chega pronto para a cozinha. Peça a prévia do seu cardápio grátis.">
 <meta property="og:image" content="https://orderflow.tec.br/assets/img/ger-pedidos.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OrderFlow — Delivery próprio, sem comissão">
@@ -77,6 +77,20 @@ section{padding:96px 0}
 .hero h1{font-size:clamp(44px,min(6.4vw,9.6vh),84px);line-height:.96;font-weight:800}
 @media(min-width:901px) and (max-height:820px){.hero{padding:44px 0 32px}.hero .lead{margin-top:18px}.cta-row{margin-top:24px}.facts{margin-top:22px}}
 .hero h1 span{display:block}
+.hero .kicker{display:block;font:600 13px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-d);margin:0 0 18px}
+.hero h1 .hl{color:var(--orange)}
+.dor{background:#fff}
+.vs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:40px}
+.vs-col{border-radius:var(--r);padding:28px 26px}
+.vs-col h3{font-size:20px;font-weight:700;margin-bottom:14px}
+.vs-col ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.vs-col li{position:relative;padding-left:32px;font-size:16px;line-height:1.45}
+.vs-col li::before{position:absolute;left:0;top:1px;width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 12px/1 var(--body)}
+.vs-sem{background:var(--ground);color:var(--ink2)}
+.vs-sem li::before{content:"✕";background:#E7E2E1;color:#8A8183}
+.vs-com{background:var(--ink);color:#fff}
+.vs-com li::before{content:"✓";background:var(--orange);color:#fff}
+@media(max-width:800px){.vs{grid-template-columns:1fr}}
 .hero .lead{margin-top:22px}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin:30px 0 0;padding:0;list-style:none;font-size:15px;color:var(--ink2)}
@@ -283,7 +297,7 @@ footer a{text-decoration:none;color:#CBC3C5}
       <a href="#preco">Preço</a>
       <a href="#perguntas">Perguntas</a>
     </nav>
-    <a class="btn btn-main" href="#contato">Quero uma demonstração</a>
+    <a class="btn btn-main" href="#contato">Quero minha prévia grátis</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menu" onclick="toggleMenu(this)">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -294,7 +308,7 @@ footer a{text-decoration:none;color:#CBC3C5}
     <a href="#painel" onclick="closeMenu()">Para você</a>
     <a href="#preco" onclick="closeMenu()">Preço</a>
     <a href="#perguntas" onclick="closeMenu()">Perguntas</a>
-    <a class="btn btn-main" href="#contato" onclick="closeMenu()">Quero uma demonstração</a>
+    <a class="btn btn-main" href="#contato" onclick="closeMenu()">Quero minha prévia grátis</a>
   </nav>
 </header>
 
@@ -302,16 +316,17 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1><span>Seu delivery.</span><span>Sua marca.</span><span>Zero comissão.</span></h1>
-      <p class="lead">Cardápio online com o seu logo e as suas cores, pedidos organizados num painel, pagamento online que se confirma sozinho e um assistente com IA que analisa o seu negócio. Tudo por uma mensalidade fixa.</p>
+      <p class="kicker">Cardápio digital para delivery · Baixada Santista</p>
+      <h1><span>Sexta à noite,</span><span class="hl">WhatsApp lotado?</span></h1>
+      <p class="lead">Com o OrderFlow, o cliente monta o pedido sozinho num cardápio com a cara da sua loja, <b>já paga</b>, e o pedido chega <b>pronto no painel da cozinha</b>. Você para de anotar pedido e volta a cuidar da loja.</p>
       <div class="cta-row">
-        <a class="btn btn-main" href="#contato">Quero uma demonstração</a>
-        <a class="btn btn-ghost" href="https://pedido.orderflow.tec.br/dona-nonna" target="_blank" rel="noopener">Abrir a loja de exemplo</a>
+        <a class="btn btn-main" href="#contato">Quero minha prévia grátis</a>
+        <a class="btn btn-ghost" href="https://pedido.orderflow.tec.br/dona-nonna" target="_blank" rel="noopener">Ver uma loja pronta</a>
       </div>
       <ul class="facts">
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Sem comissão por pedido</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Prévia do seu cardápio grátis</li>
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>No ar em até 24 horas úteis</li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Sem fidelidade</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Sem comissão e sem fidelidade</li>
       </ul>
     </div>
     <div class="stage" aria-label="O pedido do cliente chegando no painel da loja"><div class="stage-in">
@@ -335,22 +350,49 @@ footer a{text-decoration:none;color:#CBC3C5}
 <div class="strip">
   <div class="wrap">
     <ul>
-      <li><b>R$ 149,80</b><span>por mês, no cartão</span></li>
-      <li><b>0%</b><span>de comissão sobre as vendas</span></li>
+      <li><b>Grátis</b><span>a prévia do seu cardápio, em até 1 dia</span></li>
+      <li><b>Pago</b><span>Pix e cartão confirmados sozinhos</span></li>
       <li><b>24 h</b><span>para a loja entrar no ar</span></li>
-      <li><b>Online</b><span>pagamento com confirmação automática</span></li>
+      <li><b>R$ 149,80</b><span>por mês, sem comissão por pedido</span></li>
     </ul>
   </div>
 </div>
 
+<section class="dor" id="sexta">
+  <div class="wrap">
+    <h2>Conhece essa sexta à noite?</h2>
+    <p class="lead">O pico é quando você mais vende e quando mais coisa dá errado. O problema não é o movimento, é o pedido chegando picado no WhatsApp.</p>
+    <div class="vs">
+      <div class="vs-col vs-sem">
+        <h3>Hoje, no WhatsApp</h3>
+        <ul>
+          <li>30 conversas abertas e gente perguntando o preço de novo</li>
+          <li>Pedido anotado à mão, adicional e "sem cebola" que se perdem</li>
+          <li>Comprovante de Pix para conferir um por um</li>
+          <li>Cliente que desiste porque ninguém respondeu a tempo</li>
+        </ul>
+      </div>
+      <div class="vs-col vs-com">
+        <h3>Com o OrderFlow</h3>
+        <ul>
+          <li>O cliente vê o cardápio com foto e preço e monta o pedido sozinho</li>
+          <li>Adicionais e observações chegam escritos, do jeito que ele pediu</li>
+          <li>Pix e cartão confirmados sozinhos, sem comprovante</li>
+          <li>O pedido entra pronto no painel e vai direto para a cozinha</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="como-funciona">
   <div class="wrap">
-    <h2>Do cardápio no papel ao primeiro pedido online</h2>
-    <p class="lead">Você manda o que já tem. A gente monta, você revisa e começa a vender.</p>
+    <h2>Primeiro você vê. Depois decide.</h2>
+    <p class="lead">A gente monta a prévia do cardápio da sua loja sem custo. Você só assina se gostar.</p>
     <ol class="steps">
-      <li><h3>Você envia o cardápio</h3><p>Fotos, preços, logo e horários. Pode ser uma foto do cardápio impresso ou uma planilha.</p></li>
-      <li><h3>A gente monta a loja</h3><p>Seu logo, suas cores, sabores, bordas e adicionais configurados. Você recebe o link e a senha do painel.</p></li>
-      <li><h3>Você divulga e recebe</h3><p>Link pronto para o Instagram, o Google e o WhatsApp, e cartaz com QR Code para o balcão. Os pedidos caem no painel na hora.</p></li>
+      <li><h3>Você manda o cardápio</h3><p>Foto do cardápio impresso, link do iFood ou do Instagram, planilha. O que você já tiver.</p></li>
+      <li><h3>A gente monta a prévia</h3><p>Em até 1 dia, de graça: seu logo, suas cores, produtos e adicionais. Você abre no celular e faz um pedido de teste.</p></li>
+      <li><h3>Gostou? É só ligar</h3><p>A loja entra no ar em até 24 h úteis, com link para o Instagram, o Google e o WhatsApp e cartaz com QR Code para o balcão.</p></li>
     </ol>
   </div>
 </section>
@@ -433,7 +475,7 @@ footer a{text-decoration:none;color:#CBC3C5}
         <li>Cupons, taxa por bairro e QR Code de divulgação</li>
         <li>Relatórios, avaliações e assistente com IA</li>
       </ul>
-      <a class="btn btn-main" href="#contato">Quero uma demonstração</a>
+      <a class="btn btn-main" href="#contato">Quero minha prévia grátis</a>
     </div>
     <div class="video-box">
       <video id="vid" muted loop playsinline preload="metadata" poster="assets/video/orderflow-poster.webp" aria-label="Vídeo de apresentação do OrderFlow"><source src="assets/video/orderflow.mp4" type="video/mp4"></video>
@@ -445,7 +487,7 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section id="preco">
   <div class="wrap">
     <h2>Um preço só, com tudo dentro</h2>
-    <p class="lead">Aplicativos como iFood, Keeta e Rappi ficam com uma parte de cada pedido. No OrderFlow o valor é fixo, venda você 10 ou 1.000 pedidos.</p>
+    <p class="lead">Cardápio, painel, pagamento online, cupons e relatórios por uma mensalidade fixa. E, diferente dos aplicativos de entrega, nada de comissão: venda você 10 ou 1.000 pedidos, o valor é o mesmo.</p>
     <div class="price-grid">
       <div class="plan">
         <div style="font-weight:600;font-size:17px">Plano completo</div>
@@ -519,6 +561,8 @@ footer a{text-decoration:none;color:#CBC3C5}
   <div class="wrap">
     <h2>Perguntas frequentes</h2>
     <div class="faq-list">
+      <details><summary>A prévia é grátis mesmo?</summary><p>É. Você manda o cardápio, a gente monta a prévia com a sua marca em até 1 dia e você testa no celular. Se não gostar, não paga nada e não fica nenhum compromisso.</p></details>
+      <details><summary>Continuo atendendo pelo WhatsApp?</summary><p>Sim. O WhatsApp continua sendo da loja. A diferença é que, em vez de anotar o pedido, você manda o link do cardápio e o cliente pede e paga por ali. O pedido chega no painel já organizado.</p></details>
       <details><summary>Quanto tempo leva para a loja entrar no ar?</summary><p>Até 24 horas úteis depois que você envia cardápio, logo e informações da loja. Você revisa tudo antes de divulgar.</p></details>
       <details><summary>Tem comissão sobre os pedidos?</summary><p>Não. Você paga só a mensalidade. O dinheiro do pedido vai direto para você: pagamento online na sua conta, dinheiro e cartão na entrega ou na retirada.</p></details>
       <details><summary>Como funciona o pagamento online?</summary><p>O cliente paga no próprio cardápio e o pedido aparece como pago sozinho, sem comprovante. O dinheiro cai direto na conta da loja.</p></details>
@@ -535,8 +579,8 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section class="contact" id="contato">
   <div class="wrap">
     <div>
-      <h2>Vamos montar a sua loja</h2>
-      <p class="lead">Conte um pouco sobre o seu negócio. A conversa continua no WhatsApp, com uma pessoa da equipe.</p>
+      <h2>Peça a prévia do seu cardápio</h2>
+      <p class="lead">Conte um pouco sobre a sua loja. Em até 1 dia útil a gente te manda no WhatsApp a prévia montada com a sua marca, sem custo.</p>
       <div class="contact-links">
         <a href="https://wa.me/5511982051205?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20OrderFlow." target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.3-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>(11) 98205-1205</a>
         <a href="mailto:contato@orderflow.tec.br"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>contato@orderflow.tec.br</a>
@@ -553,13 +597,13 @@ footer a{text-decoration:none;color:#CBC3C5}
       </div>
       <div class="two">
         <label>Tipo de negócio<select id="f-seg"><option>Pizzaria</option><option>Hamburgueria</option><option>Restaurante / Lanchonete</option><option>Marmitaria</option><option>Doceria / Confeitaria</option><option>Açaí / Sorvetes</option><option>Padaria / Cafeteria</option><option>Bar / Adega</option><option>Pet shop</option><option>Gás e água</option><option>Mercado / Hortifruti</option><option>Outro</option></select></label>
-        <label>Forma de pagamento<select id="f-pgto"><option>Cartão · R$ 149,80/mês</option><option>PIX · R$ 169,80/mês</option><option>Plano de 2 anos</option></select></label>
+        <label>Plano de interesse<select id="f-pgto"><option>Cartão · R$ 149,80/mês</option><option>PIX · R$ 169,80/mês</option><option>Plano de 2 anos</option></select></label>
       </div>
-      <label>Mensagem (opcional)<textarea id="f-msg" rows="3" placeholder="Ex.: hoje vendo pelo iFood e pelo WhatsApp"></textarea></label>
+      <label>Mensagem (opcional)<textarea id="f-msg" rows="3" placeholder="Ex.: link do Instagram ou do iFood da loja"></textarea></label>
       <label class="optin"><input type="checkbox" id="f-optin"><span>Quero receber novidades e ofertas do OrderFlow por WhatsApp e e-mail (opcional; você pode cancelar quando quiser)</span></label>
       <label class="hp" aria-hidden="true">Site<input id="f-site" tabindex="-1" autocomplete="off"></label>
       <div class="err" id="f-err" role="alert"></div>
-      <button class="btn btn-main" type="submit" id="f-btn">Quero uma demonstração</button>
+      <button class="btn btn-main" type="submit" id="f-btn">Quero minha prévia grátis</button>
       <p class="note" style="margin-top:-6px;text-align:center">Respondemos pelo WhatsApp em horário comercial.</p>
       <p class="note">Ao enviar, você concorda com a <a href="privacidade.html">Política de Privacidade</a>. Usamos seus dados só para falar com você sobre o OrderFlow.</p>
       <div class="form-ok" id="f-ok" role="status" aria-live="polite">
@@ -705,7 +749,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   if(dig.length<10||dig.length>11||!/^[1-9]{2}/.test(dig)){err.textContent='Confira o WhatsApp com DDD.';document.getElementById('f-whats').focus();return}
   err.textContent='';
   var cidade=g('f-cidade');
-  var t='*Novo contato pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
+  var t='*Pedido de prévia pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
   if(g('f-msg')) t+='\n\n*Mensagem:*\n'+g('f-msg');
   var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site'),optin:document.getElementById('f-optin').checked},ofSrc);
   try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
@@ -715,7 +759,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   // Confirmação na própria página: se o navegador bloquear a nova aba, o botão abre o WhatsApp
   var form=document.getElementById('form');
   document.getElementById('f-ok-t').textContent='Recebemos seu contato, '+nome.split(/\s+/)[0]+'!';
-  document.getElementById('f-ok-p').textContent='Uma pessoa da equipe vai te chamar no WhatsApp '+fmtTel(dig)+' em horário comercial. Se quiser adiantar, a conversa já está pronta:';
+  document.getElementById('f-ok-p').textContent='Em até 1 dia útil a gente te chama no WhatsApp '+fmtTel(dig)+' com a prévia do cardápio. Se quiser adiantar, já pode mandar o cardápio por aqui:';
   document.getElementById('f-ok-wa').href=wa;
   form.classList.add('sent');
   form.scrollIntoView({behavior:'smooth',block:'center'});
