@@ -212,7 +212,8 @@ section{padding:96px 0}
 .calc .of-name{color:var(--orange-d);font-weight:800}
 .calc h3 .vs{color:var(--muted);font-weight:500;display:inline;margin:0}
 .calc .bar.of span{font-size:16px}
-.calc .bar b{font:800 18px/1 var(--display)}
+.calc .bar b{font:800 18px/1 var(--display);white-space:nowrap}
+@media(max-width:480px){.calc .bar.of span{flex-wrap:wrap;font-size:14px}}
 .calc .bar i{grid-column:1/-1;display:block;height:12px;border-radius:999px;background:var(--ground);overflow:hidden}
 .calc .bar i::before{content:"";display:block;height:100%;width:var(--w,0%);border-radius:inherit;background:var(--c);transition:width .25s}
 .calc .bar.mk{--c:#C0452E}.calc .bar.mk b{color:#A3321F}
@@ -632,7 +633,7 @@ footer a{text-decoration:none;color:#CBC3C5}
         <div class="addons"><b>Opcionais, se precisar</b>
           <p><span>Nota fiscal (NFC-e)</span><span>+ R$ 39,90/mês</span></p>
           <p><span>Acesso de atendente</span><span>R$ 20/mês cada</span></p>
-          <p><span>Mais consultas ao assistente</span><span>a partir de + R$ 30/mês</span></p>
+          <p><span>Mais consultas de IA</span><span>a partir de + R$ 30/mês</span></p>
         </div>
         <a class="btn btn-main" href="#contato">Quero começar</a>
         <div class="fine">Sem fidelidade nem multa (aviso de 60 dias).</div>
