@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OrderFlow — Cardápio próprio sem comissão e iFood no mesmo painel</title>
-<meta name="description" content="Cardápio digital com a sua marca e sem comissão, Pix confirmado sozinho, pedidos do iFood no mesmo painel, quanto o iFood levou de cada pedido e nota fiscal. Prévia do seu cardápio grátis.">
-<meta name="keywords" content="delivery próprio, cardápio digital, sistema para restaurante, delivery sem comissão, integração ifood, gestor de pedidos ifood, nfc-e restaurante, pix automático, gestão de pedidos, orderflow">
+<meta name="description" content="Cardápio digital com a sua marca e sem comissão, Pix confirmado sozinho, pedidos do iFood, 99Food e Keeta no mesmo painel, quanto o iFood levou de cada pedido e nota fiscal. Prévia do seu cardápio grátis.">
+<meta name="keywords" content="delivery próprio, cardápio digital, sistema para restaurante, delivery sem comissão, integração ifood, integração 99food, integração keeta, gestor de pedidos ifood, nfc-e restaurante, pix automático, gestão de pedidos, orderflow">
 <meta name="author" content="OrderFlow · HM17 Desenvolvimento de Software sob Encomenda LTDA">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#1E1A1B">
@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/orderflow-icone-192.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OrderFlow","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://orderflow.tec.br","description":"Cardápio online com a sua marca, painel de pedidos com integração ao iFood, pagamento online com Pix automático, financeiro por canal de venda, nota fiscal (NFC-e) e assistente com IA para restaurantes, sem comissão por pedido.","offers":{"@type":"Offer","price":"149.80","priceCurrency":"BRL"},"provider":{"@type":"Organization","name":"OrderFlow","url":"https://orderflow.tec.br"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OrderFlow","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://orderflow.tec.br","description":"Cardápio online com a sua marca, painel de pedidos com integração ao iFood, 99Food e Keeta, pagamento online com Pix automático, financeiro por canal de venda, nota fiscal (NFC-e) e assistente com IA para restaurantes, sem comissão por pedido.","offers":{"@type":"Offer","price":"149.80","priceCurrency":"BRL"},"provider":{"@type":"Organization","name":"OrderFlow","url":"https://orderflow.tec.br"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -298,7 +298,7 @@ section{padding:96px 0}
 .tk b{font-size:13.5px}
 .tk em{font-style:normal;font-size:12px;color:var(--muted)}
 .tag{justify-self:start;font:700 10.5px/1 var(--body);padding:4px 7px;border-radius:999px;letter-spacing:.02em}
-.tag.if{background:#EA1D2C;color:#fff}.tag.pr{background:var(--orange-soft);color:var(--orange-d)}.tag.pg{background:var(--green-soft);color:var(--green)}.tag.bc{background:#ECE8E7;color:var(--ink2)}
+.tag.if{background:#EA1D2C;color:#fff}.tag.nn{background:#F5B700;color:#1E1A1B}.tag.kt{background:#FFE14D;color:#1E1A1B}.tag.pr{background:var(--orange-soft);color:var(--orange-d)}.tag.pg{background:var(--green-soft);color:var(--green)}.tag.bc{background:#ECE8E7;color:var(--ink2)}
 .tk.hot{border-color:#EA1D2C;box-shadow:0 0 0 3px rgba(234,29,44,.12)}
 .fin{border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:7px}
 .fin .row{display:flex;justify-content:space-between;gap:12px}
@@ -349,7 +349,7 @@ footer a{text-decoration:none;color:#CBC3C5}
       <a href="#como-funciona">Como funciona</a>
       <a href="#cliente">Para o cliente</a>
       <a href="#painel">Para você</a>
-      <a href="#ifood">iFood</a>
+      <a href="#ifood">Apps de delivery</a>
       <a href="#preco">Preço</a>
       <a href="#perguntas">Perguntas</a>
     </nav>
@@ -362,7 +362,7 @@ footer a{text-decoration:none;color:#CBC3C5}
     <a href="#como-funciona" onclick="closeMenu()">Como funciona</a>
     <a href="#cliente" onclick="closeMenu()">Para o cliente</a>
     <a href="#painel" onclick="closeMenu()">Para você</a>
-    <a href="#ifood" onclick="closeMenu()">iFood e financeiro</a>
+    <a href="#ifood" onclick="closeMenu()">iFood, 99Food e Keeta</a>
     <a href="#preco" onclick="closeMenu()">Preço</a>
     <a href="#perguntas" onclick="closeMenu()">Perguntas</a>
     <a class="btn btn-main" href="#contato" onclick="closeMenu()">Quero minha prévia grátis</a>
@@ -373,16 +373,16 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section class="hero">
   <div class="wrap">
     <div>
-      <p class="kicker">Cardápio próprio · iFood · Pix automático · Nota fiscal</p>
+      <p class="kicker">Cardápio próprio · iFood, 99Food e Keeta · Pix automático · Nota fiscal</p>
       <h1><span>Sexta à noite,</span><span class="hl">WhatsApp lotado?</span></h1>
-      <p class="lead">Com o OrderFlow, o cliente monta o pedido sozinho num cardápio com a cara da sua loja, <b>já paga</b>, e o pedido chega <b>pronto no painel da cozinha</b>. Os pedidos do <b>iFood caem no mesmo quadro</b>. Uma tela só, sem comissão sobre o que é seu.</p>
+      <p class="lead">Com o OrderFlow, o cliente monta o pedido sozinho num cardápio com a cara da sua loja, <b>já paga</b>, e o pedido chega <b>pronto no painel da cozinha</b>. Os pedidos do <b>iFood, da 99Food e da Keeta caem no mesmo quadro</b>. Uma tela só, sem comissão sobre o que é seu.</p>
       <div class="cta-row">
         <a class="btn btn-main" href="#contato">Quero minha prévia grátis</a>
         <a class="btn btn-ghost" href="https://pedido.orderflow.tec.br/dona-nonna" target="_blank" rel="noopener">Ver uma loja pronta</a>
       </div>
       <ul class="facts">
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Prévia do seu cardápio grátis</li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>iFood no mesmo painel</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>iFood, 99Food e Keeta no mesmo painel</li>
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Sem comissão e sem fidelidade</li>
       </ul>
     </div>
@@ -409,7 +409,7 @@ footer a{text-decoration:none;color:#CBC3C5}
     <ul>
       <li><b>Grátis</b><span>a prévia do seu cardápio, em até 1 dia</span></li>
       <li><b>Pago</b><span>Pix e cartão confirmados sozinhos</span></li>
-      <li><b>1 tela</b><span>para o cardápio próprio e o iFood</span></li>
+      <li><b>1 tela</b><span>para o cardápio próprio e os apps</span></li>
       <li><b>R$ 149,80</b><span>por mês, sem comissão por pedido</span></li>
     </ul>
   </div>
@@ -427,7 +427,7 @@ footer a{text-decoration:none;color:#CBC3C5}
           <li>Pedido anotado à mão, adicional e "sem cebola" que se perdem</li>
           <li>Comprovante de Pix para conferir um por um</li>
           <li>Cliente que desiste porque ninguém respondeu a tempo</li>
-          <li>O tablet do iFood apitando de um lado e o WhatsApp do outro</li>
+          <li>Um tablet para cada app apitando de um lado e o WhatsApp do outro</li>
         </ul>
       </div>
       <div class="vs-col vs-com">
@@ -437,7 +437,7 @@ footer a{text-decoration:none;color:#CBC3C5}
           <li>Adicionais e observações chegam escritos, do jeito que ele pediu</li>
           <li>Pix e cartão confirmados sozinhos, sem comprovante</li>
           <li>O pedido entra pronto no painel e vai direto para a cozinha</li>
-          <li>iFood e cardápio próprio no mesmo quadro, com o mesmo aviso</li>
+          <li>iFood, 99Food, Keeta e cardápio próprio no mesmo quadro</li>
         </ul>
       </div>
     </div>
@@ -500,7 +500,7 @@ footer a{text-decoration:none;color:#CBC3C5}
         </div>
       </div>
       <div class="panel-text" aria-live="polite">
-        <div data-p="0"><h3>Todos os pedidos num quadro</h3><p>Cada pedido mostra há quanto tempo está esperando, o que foi pedido e se o PIX já caiu.</p><ul><li>Aviso de pedido novo e de atraso</li><li>Balcão, telefone e iFood no mesmo lugar</li><li>Impressão do cupom com um toque</li></ul></div>
+        <div data-p="0"><h3>Todos os pedidos num quadro</h3><p>Cada pedido mostra há quanto tempo está esperando, o que foi pedido e se o PIX já caiu.</p><ul><li>Aviso de pedido novo e de atraso</li><li>Balcão, telefone e apps de delivery no mesmo lugar</li><li>Impressão do cupom com um toque</li></ul></div>
         <div data-p="1" hidden><h3>Números que viram decisão</h3><p>Receita, ticket médio, horário de pico, produtos que mais vendem e clientes que sumiram.</p><ul><li>Vendas por canal e quanto sobra de cada um</li><li>Comparação com o período anterior</li><li>Horário de pico respeitando o seu horário</li><li>Exportação em planilha</li></ul></div>
         <div data-p="2" hidden><h3>Cardápio que você mesmo edita</h3><p>Mude preço, foto ou disponibilidade e o cliente vê na hora. Arraste para reordenar.</p><ul><li>Sabores, bordas e adicionais</li><li>Prévia de como o cliente vê</li><li>Selo de mais pedido automático</li></ul></div>
         <div data-p="3" hidden><h3>Um assistente que conhece a sua loja</h3><p>Pergunte o que fazer para vender mais e receba ações baseadas nos seus próprios números.</p><ul><li>Analisa cardápio, vendas, clientes e avaliações</li><li>50 consultas por mês no plano</li><li>Dados pessoais dos clientes não são enviados</li></ul></div>
@@ -512,13 +512,13 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section class="ifd" id="ifood">
   <div class="wrap">
     <h2>Use o iFood para ser encontrado.<br><span class="hl">Use o seu cardápio para lucrar.</span></h2>
-    <p class="lead">Quase toda loja vende pelo iFood, e não precisa sair de lá. Com o OrderFlow, os pedidos do iFood entram no mesmo quadro dos seus, e você enxerga quanto cada canal deixa de verdade no caixa.</p>
+    <p class="lead">Quase toda loja vende pelos apps de delivery, e não precisa sair deles. Com o OrderFlow, os pedidos do iFood, da 99Food e da Keeta entram no mesmo quadro dos seus, e você enxerga quanto cada canal deixa de verdade no caixa.</p>
     <div class="ifd-grid">
       <ul class="ifd-list">
-        <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></span><div><h3>Pedidos do iFood no mesmo quadro</h3><p>Chegam com a etiqueta do iFood, o mesmo aviso sonoro e a mesma impressão. Confirmar, preparar, pronto e despachado vão para o iFood sozinhos, e dá para aceitar automaticamente.</p></div></li>
-        <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><h3>Quanto o iFood levou de cada pedido</h3><p>Comissão, taxa de pagamento, promoções, valor líquido e a data do repasse, pedido a pedido. Sem planilha e sem susto no extrato.</p></div></li>
+        <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></span><div><h3>iFood, 99Food e Keeta no mesmo quadro</h3><p>Cada pedido chega com a etiqueta do app, o mesmo aviso sonoro e a mesma impressão. Confirmar, preparar, pronto e despachado vão para o app sozinhos, e dá para aceitar automaticamente.</p></div></li>
+        <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><h3>Quanto cada app levou de cada pedido</h3><p>Comissão, taxa de pagamento, promoções, valor líquido e a data do repasse, pedido a pedido. Sem planilha e sem susto no extrato.</p></div></li>
         <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><h3>Relatórios por canal de venda</h3><p>Quanto veio do cardápio próprio, do balcão, do telefone e dos apps de delivery, e quanto das suas vendas já é seu, sem comissão.</p></div></li>
-        <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span><div><h3>Conecta em poucos minutos, sem custo extra</h3><p>O próprio gerente autoriza o OrderFlow no Portal do Parceiro iFood, com passo a passo no painel. A integração está incluída no plano.</p></div></li>
+        <li><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span><div><h3>Conecta em poucos minutos, sem custo extra</h3><p>O próprio gerente autoriza o OrderFlow no portal de parceiro de cada app, com passo a passo no painel. A integração está incluída no plano.</p></div></li>
       </ul>
       <div class="mock" role="img" aria-label="Exemplo: quadro com pedidos do cardápio próprio, do iFood e do balcão, o detalhe do que o iFood descontou de um pedido e a divisão das vendas por canal">
         <div class="mock-h">Quadro de pedidos <small>exemplo ilustrativo</small></div>
@@ -532,7 +532,8 @@ footer a{text-decoration:none;color:#CBC3C5}
             <div class="tk"><span class="tag pr">Cardápio próprio</span><b>#1040 · R$ 58,50</b><em>entrega · Gonzaga</em></div>
           </div>
           <div class="col"><span>Saiu</span>
-            <div class="tk"><span class="tag if">iFood</span><b>#1958 · R$ 49,90</b><em>entregador do iFood</em></div>
+            <div class="tk"><span class="tag nn">99Food</span><b>#3071 · R$ 49,90</b><em>entregador do app</em></div>
+            <div class="tk"><span class="tag kt">Keeta</span><b>#5520 · R$ 38,00</b><em>entregador do app</em></div>
           </div>
         </div>
         <div class="fin">
@@ -544,12 +545,12 @@ footer a{text-decoration:none;color:#CBC3C5}
         </div>
         <div class="chs">
           <div class="mock-h" style="font-size:13.5px">Vendas do mês por canal <small>62% sem comissão</small></div>
-          <div class="bar2"><i style="width:54%;background:var(--orange)"></i><i style="width:8%;background:#8A8183"></i><i style="width:38%;background:#EA1D2C"></i></div>
-          <div class="lg"><span style="--c:var(--orange)">Cardápio próprio 54%</span><span style="--c:#8A8183">Balcão e telefone 8%</span><span style="--c:#EA1D2C">iFood 38%</span></div>
+          <div class="bar2"><i style="width:54%;background:var(--orange)"></i><i style="width:8%;background:#8A8183"></i><i style="width:30%;background:#EA1D2C"></i><i style="width:8%;background:#F5B700"></i></div>
+          <div class="lg"><span style="--c:var(--orange)">Cardápio próprio 54%</span><span style="--c:#8A8183">Balcão e telefone 8%</span><span style="--c:#EA1D2C">iFood 30%</span><span style="--c:#F5B700">99Food e Keeta 8%</span></div>
         </div>
       </div>
     </div>
-    <p class="fine">A integração depende da autorização da loja e das regras de cada aplicativo de delivery. O pagamento e o repasse dos pedidos do iFood continuam com o iFood; os valores do OrderFlow servem para acompanhar, e o extrato do app é a referência oficial.</p>
+    <p class="fine">A integração depende da autorização da loja e das regras de cada aplicativo de delivery. O pagamento e o repasse dos pedidos dos apps continuam com cada app; os valores do OrderFlow servem para acompanhar, e o extrato do app é a referência oficial.</p>
   </div>
 </section>
 
@@ -560,8 +561,8 @@ footer a{text-decoration:none;color:#CBC3C5}
     <div class="why-grid">
       <article><span class="big">0%</span><h3>De comissão, sempre</h3><p>Mensalidade fixa. Venda 10 ou 1.000 pedidos pelo seu cardápio e o valor é o mesmo. O dinheiro cai direto na conta da loja.</p></article>
       <article><span class="big">Pix</span><h3>Que se confirma sozinho</h3><p>Nada de conferir comprovante. Pedido com pagamento online só entra no quadro depois de pago.</p></article>
-      <article><span class="big">1 tela</span><h3>Para tudo o que chega</h3><p>Cardápio próprio, balcão, telefone e iFood no mesmo quadro, com o mesmo aviso e a mesma impressão.</p></article>
-      <article><span class="big">R$</span><h3>Você sabe quanto sobra</h3><p>Valor líquido por canal e o que o iFood descontou de cada pedido. Decisão com número, não com achismo.</p></article>
+      <article><span class="big">1 tela</span><h3>Para tudo o que chega</h3><p>Cardápio próprio, balcão, telefone, iFood, 99Food e Keeta no mesmo quadro, com o mesmo aviso e a mesma impressão.</p></article>
+      <article><span class="big">R$</span><h3>Você sabe quanto sobra</h3><p>Valor líquido por canal e o que cada app descontou de cada pedido. Decisão com número, não com achismo.</p></article>
       <article><span class="big">IA</span><h3>Um assistente que conhece a loja</h3><p>Pergunte o que fazer para vender mais e receba ações baseadas nos seus próprios números.</p></article>
       <article><span class="big">24 h</span><h3>A gente monta para você</h3><p>Prévia grátis, loja no ar em até 24 h úteis, treinamento e suporte por WhatsApp. Sem fidelidade no plano mensal.</p></article>
     </div>
@@ -593,7 +594,7 @@ footer a{text-decoration:none;color:#CBC3C5}
       <ul>
         <li>Cardápio online com a sua marca</li>
         <li>Pagamento online com confirmação automática</li>
-        <li>Todos os pedidos num painel só, inclusive os do iFood</li>
+        <li>Todos os pedidos num painel só, inclusive os do iFood, 99Food e Keeta</li>
         <li>Cupons, taxa por bairro e QR Code de divulgação</li>
         <li>Relatórios por canal, avaliações e assistente com IA</li>
       </ul>
@@ -609,7 +610,7 @@ footer a{text-decoration:none;color:#CBC3C5}
 <section id="preco">
   <div class="wrap">
     <h2>Um preço só, com tudo dentro</h2>
-    <p class="lead">Cardápio, painel, pagamento online, integração com o iFood, cupons e relatórios por uma mensalidade fixa. E, diferente dos aplicativos de entrega, nada de comissão: venda você 10 ou 1.000 pedidos, o valor é o mesmo.</p>
+    <p class="lead">Cardápio, painel, pagamento online, integração com iFood, 99Food e Keeta, cupons e relatórios por uma mensalidade fixa. E, diferente dos aplicativos de entrega, nada de comissão: venda você 10 ou 1.000 pedidos, o valor é o mesmo.</p>
     <div class="price-grid">
       <div class="plan">
         <div style="font-weight:600;font-size:17px">Plano completo</div>
@@ -619,7 +620,7 @@ footer a{text-decoration:none;color:#CBC3C5}
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Cardápio online com a sua marca</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Painel de pedidos</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pagamento online com Pix automático</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pedidos do iFood no mesmo painel</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pedidos do iFood, 99Food e Keeta no painel</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Financeiro e relatórios por canal</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Taxa de entrega por bairro ou distância</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Cupons de desconto</li>
@@ -658,7 +659,7 @@ footer a{text-decoration:none;color:#CBC3C5}
           <strong id="sv">R$ 2.350/mês</strong>
           <em id="svY">R$ 28.202 em um ano</em>
         </div>
-        <p class="note" style="color:var(--ink2);font-size:14px;margin-top:18px"><b>Vai continuar no iFood?</b> Ótimo: os pedidos de lá entram no mesmo painel, e você vê quanto cada um custou. A ideia é trazer para o seu cardápio o cliente que já te conhece.</p>
+        <p class="note" style="color:var(--ink2);font-size:14px;margin-top:18px"><b>Vai continuar nos apps?</b> Ótimo: os pedidos de lá entram no mesmo painel, e você vê quanto cada um custou. A ideia é trazer para o seu cardápio o cliente que já te conhece.</p>
         <p class="note">Simulação só com a comissão. A comissão de cada aplicativo varia conforme o plano contratado; taxas de cartão e de entrega existem nos dois casos.</p>
       </div>
     </div>
@@ -698,9 +699,9 @@ footer a{text-decoration:none;color:#CBC3C5}
       <details><summary>Como funciona o pagamento online?</summary><p>O cliente paga no próprio cardápio e o pedido aparece como pago sozinho, sem comprovante. O dinheiro cai direto na conta da loja.</p></details>
       <details><summary>Posso cobrar a entrega por bairro ou por distância?</summary><p>Sim. No painel você escolhe taxa fixa, entrega grátis, uma taxa para cada bairro ou faixas de distância a partir da loja. Dá para mudar quando quiser.</p></details>
       <details><summary>Dá para criar cupom de desconto?</summary><p>Sim. Você cria e ativa os cupons no painel: porcentagem, valor em reais ou entrega grátis, com regras como primeiro pedido, valor mínimo e data para acabar.</p></details>
-      <details><summary>Preciso sair do iFood?</summary><p>Não. O iFood é ótimo para ser encontrado por clientes novos. Com o OrderFlow, os pedidos do iFood entram no mesmo quadro dos pedidos do seu cardápio, e você pode convidar quem já é cliente a pedir direto com você, sem comissão.</p></details>
-      <details><summary>Como funciona a integração com o iFood?</summary><p>O gerente conecta a loja no painel do OrderFlow e autoriza no Portal do Parceiro iFood, com passo a passo na tela. A partir daí, os pedidos do iFood chegam no quadro com aviso sonoro e impressão, e cada etapa (confirmado, em preparo, pronto, despachado) é enviada ao iFood sozinha. Dá para aceitar os pedidos automaticamente. A integração está incluída no plano.</p></details>
-      <details><summary>Consigo ver quanto o iFood cobrou de cada pedido?</summary><p>Sim. Em cada pedido do iFood aparecem a comissão, a taxa de pagamento, as promoções, o valor líquido e a data prevista do repasse. Nos relatórios, as vendas aparecem separadas por canal: cardápio próprio, balcão, telefone e apps de delivery. Os valores servem para acompanhar; o extrato do iFood continua sendo a referência oficial.</p></details>
+      <details><summary>Preciso sair do iFood?</summary><p>Não. Os apps de delivery são ótimos para ser encontrado por clientes novos. Com o OrderFlow, os pedidos do iFood, da 99Food e da Keeta entram no mesmo quadro dos pedidos do seu cardápio, e você pode convidar quem já é cliente a pedir direto com você, sem comissão.</p></details>
+      <details><summary>Como funciona a integração com iFood, 99Food e Keeta?</summary><p>O gerente conecta a loja no painel do OrderFlow e autoriza no portal de parceiro de cada app, com passo a passo na tela. A partir daí, os pedidos chegam no quadro com aviso sonoro e impressão, e cada etapa (confirmado, em preparo, pronto, despachado) é enviada ao app sozinha. Dá para aceitar os pedidos automaticamente. A integração está incluída no plano.</p></details>
+      <details><summary>Consigo ver quanto o app cobrou de cada pedido?</summary><p>Sim. Em cada pedido de app aparecem a comissão, a taxa de pagamento, as promoções, o valor líquido e a data prevista do repasse. Nos relatórios, as vendas aparecem separadas por canal: cardápio próprio, balcão, telefone e apps de delivery. Os valores servem para acompanhar; o extrato de cada app continua sendo a referência oficial.</p></details>
       <details><summary>O OrderFlow emite nota fiscal?</summary><p>Sim, como opcional (+ R$ 39,90 por mês): a NFC-e, nota fiscal do consumidor, emitida a partir do pedido. A loja precisa do certificado digital A1 e do código de segurança (CSC) da Sefaz, e o contador da loja define a parte fiscal dos produtos. A gente ajuda a configurar.</p></details>
       <details><summary>Minha equipe pode usar o sistema?</summary><p>Sim. O gerente cria acessos de atendente (R$ 20 por mês cada), com login próprio e só o quadro de pedidos, sem ver faturamento. Cada mudança de etapa registra quem fez.</p></details>
       <details><summary>Preciso entender de tecnologia?</summary><p>Não. A gente configura tudo e treina você e a sua equipe. Depois, mudar preço, foto ou horário é feito no próprio painel.</p></details>
