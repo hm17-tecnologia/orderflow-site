@@ -61,7 +61,7 @@ section{padding:96px 0}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 20px/1 var(--display);letter-spacing:-.02em}
 .brand img{width:36px;height:36px;border-radius:9px;object-fit:cover;background:var(--ink)}
 .nav{display:flex;gap:24px;margin-left:auto}
-.nav a{text-decoration:none;font-size:15px;font-weight:500;color:var(--ink2)}
+.nav a{white-space:nowrap;text-decoration:none;font-size:15px;font-weight:500;color:var(--ink2)}
 .nav a:hover{color:var(--ink)}
 .top .btn{min-height:42px;padding:0 18px;font-size:15px}
 .menu-btn{display:none;margin-left:auto;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;align-items:center;justify-content:center;cursor:pointer}
@@ -331,6 +331,94 @@ section{padding:96px 0}
 .plan .addons p{margin:4px 0;display:flex;justify-content:space-between;gap:12px}
 .plan .addons p span:last-child{color:#fff;white-space:nowrap}
 
+/* experiência (UX) */
+.ux{background:var(--ground)}
+.ux h2 .hl{color:var(--orange-d)}
+.ux-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:28px;margin-top:44px;align-items:stretch}
+.chat{background:#EFE7DE;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.chat-h{display:flex;gap:10px;align-items:center;background:#1F2C33;color:#fff;padding:12px 14px}
+.chat-h .av{width:34px;height:34px;border-radius:50%;background:#55666F}
+.chat-h b{display:block;font-size:14.5px}.chat-h small{font-size:12px;color:#B6C2C8}
+.chat-b{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:6px;max-height:440px;overflow:hidden;mask-image:linear-gradient(#000 80%,transparent)}
+.chat-b p{margin:0;max-width:82%;padding:7px 10px;border-radius:10px;font-size:13.5px;line-height:1.35;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.chat-b .in{background:#fff;align-self:flex-start;border-top-left-radius:3px}
+.chat-b .out{background:#D9FDD3;align-self:flex-end;border-top-right-radius:3px}
+.chat-f{background:#fff;padding:12px 14px;font-size:14px;color:#A3321F;border-top:1px solid var(--line)}
+.flow{background:var(--ink);color:#fff;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:18px}
+.flow-h{display:flex;gap:10px;align-items:center}
+.flow-h img{border-radius:9px}
+.flow-h b{display:block;font-size:15px}.flow-h small{font-size:12.5px;color:#CBC3C5}
+.badge4{margin-left:auto;background:var(--orange);color:#fff;font:800 15px/1 var(--display);padding:9px 13px;border-radius:999px;white-space:nowrap}
+.steps4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:st}
+.steps4 li{display:flex;flex-direction:column;gap:6px;counter-increment:st;position:relative}
+.steps4 .ph{border-radius:18px;background:#141011;padding:5px;box-shadow:0 18px 30px -18px rgba(0,0,0,.7);position:relative}
+.steps4 .ph::before{content:counter(st);position:absolute;top:-8px;left:-8px;width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;font:800 14px/28px var(--display);text-align:center;z-index:2}
+.steps4 img{border-radius:14px;aspect-ratio:390/700;object-fit:cover;object-position:top;width:100%}
+.steps4 b{font-size:15px;margin-top:6px}
+.steps4 li>span{font-size:13px;color:#CBC3C5;line-height:1.35}
+.flow-f{border-top:1px solid #3A3335;padding-top:14px;font-size:15px;color:#E9E3E4}
+.flow-f b{color:#7FD3A4}
+.ux-chips{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.ux-chips li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px 8px 12px;font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:8px}
+.ux-chips li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+@media(max-width:980px){.ux-grid{grid-template-columns:1fr}.chat-b{max-height:300px}}
+@media(max-width:620px){.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}.badge4{font-size:13px;padding:7px 10px}}
+
+/* comparativo */
+.cmp-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;font-size:14px;color:var(--ink2)}
+.cmp-legend>span{display:inline-flex;align-items:center;gap:7px}
+.cmp-legend .ic svg{width:20px;height:20px}
+.cmp-box{margin-top:18px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff}
+.cmp-t{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
+.cmp-t thead th{padding:20px 10px 16px;font-size:15px;font-weight:700;text-align:center;vertical-align:bottom;border-bottom:1px solid var(--line);background:#fff}
+.cmp-t thead th.f{width:40%}
+.cmp-t thead th span{display:block}
+.cmp-t thead th img{display:block;margin:0 auto 6px;border-radius:7px}
+.cmp-t thead th em{display:inline-block;font-style:normal;font:700 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;background:var(--orange);color:#fff;padding:5px 8px;border-radius:999px;margin-bottom:8px}
+.cmp-t .of{background:#FFF6F0}
+.cmp-t thead th.of{background:#FFF6F0;border-top:4px solid var(--orange)}
+.cmp-t thead th.of span{color:var(--orange-d);font:800 18px/1.1 var(--display)}
+.cmp-t tr.grp th{text-align:left;padding:18px 18px 8px;font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-d);background:#fff;border-bottom:1px solid var(--line)}
+.cmp-t tbody th[scope=row]{text-align:left;padding:14px 18px;font-size:15.5px;font-weight:600;border-bottom:1px solid var(--line)}
+.cmp-t tbody td{text-align:center;padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.cmp-t td small{display:block;font-size:12px;color:var(--muted);line-height:1.3;margin-top:4px}
+.cmp-t td.of small{color:var(--orange-d);font-weight:600}
+.ic{display:inline-flex;position:relative}
+.cmp-t .ic svg{width:26px;height:26px}
+.cmp svg circle{stroke-width:1.6}
+.cmp svg path{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.s-S circle{fill:var(--green-soft);stroke:var(--green)}.s-S path{stroke:var(--green)}
+.s-P circle{fill:#FBF0DC;stroke:#B7791F}.s-P path.h{fill:#B7791F;stroke:none}
+.s-N circle{fill:#F9E6E3;stroke:#B23A2B}.s-N path{stroke:#B23A2B}
+.s-X circle{fill:none;stroke:var(--line)}.s-X path{stroke:#B5ADAF}
+td.s-S.of .ic svg{width:30px;height:30px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cmp-t tfoot th{text-align:left;padding:18px;font-size:15px}
+.cmp-t tfoot td{text-align:center;padding:16px 10px}
+.cmp-t tfoot b{font:800 30px/1 var(--display);display:block}
+.cmp-t tfoot td.of b{color:var(--orange-d);font-size:38px}
+.cmp-t tfoot span{font-size:12.5px;color:var(--muted)}
+.cmp-t tfoot i{display:block;height:8px;border-radius:99px;background:var(--ground);margin:10px auto 0;max-width:120px;overflow:hidden}
+.cmp-t tfoot i::before{content:"";display:block;height:100%;width:var(--w);background:#B5ADAF;border-radius:inherit}
+.cmp-t tfoot td.of i::before{background:var(--orange)}
+.cmp-cta{margin-top:26px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:18px;padding:22px 26px}
+.cmp-cta p{margin:0;max-width:62ch;font-size:16.5px;color:#E9E3E4}
+.cmp-cta b{color:#fff}
+.cmp-note{font-size:13px;color:var(--muted);margin:14px 0 0;max-width:80ch}
+@media(max-width:720px){
+  .cmp-t thead th.f{width:34%}
+  .cmp-t thead th{font-size:12px;padding:14px 4px 12px}
+  .cmp-t thead th.of span{font-size:12.5px;letter-spacing:-.02em}
+  .cmp-t thead th em{display:none}
+  .cmp-t tbody th[scope=row]{font-size:13.5px;padding:12px 10px}
+  .cmp-t td small{display:none}
+  .cmp-t .ic svg{width:22px;height:22px}
+  td.s-S.of .ic svg{width:26px;height:26px}
+  .cmp-t tr.grp th{padding:14px 10px 6px}
+  .cmp-t tfoot th{padding:14px 10px;font-size:13px}
+  .cmp-t tfoot b{font-size:22px}.cmp-t tfoot td.of b{font-size:28px}
+}
+
 footer{background:#141011;color:#9C9395;padding:36px 0;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
 footer nav{display:flex;gap:20px;flex-wrap:wrap}
@@ -347,9 +435,8 @@ footer a{text-decoration:none;color:#CBC3C5}
     <a class="brand" href="#inicio"><img src="assets/brand/orderflow-icone-96.png" width="36" height="36" alt="">OrderFlow</a>
     <nav class="nav" aria-label="Seções">
       <a href="#como-funciona">Como funciona</a>
-      <a href="#cliente">Para o cliente</a>
-      <a href="#painel">Para você</a>
       <a href="#ifood">Apps de delivery</a>
+      <a href="#comparar">Comparar</a>
       <a href="#preco">Preço</a>
       <a href="#perguntas">Perguntas</a>
     </nav>
@@ -363,6 +450,7 @@ footer a{text-decoration:none;color:#CBC3C5}
     <a href="#cliente" onclick="closeMenu()">Para o cliente</a>
     <a href="#painel" onclick="closeMenu()">Para você</a>
     <a href="#ifood" onclick="closeMenu()">iFood, 99Food e Keeta</a>
+    <a href="#comparar" onclick="closeMenu()">Comparar</a>
     <a href="#preco" onclick="closeMenu()">Preço</a>
     <a href="#perguntas" onclick="closeMenu()">Perguntas</a>
     <a class="btn btn-main" href="#contato" onclick="closeMenu()">Quero minha prévia grátis</a>
@@ -479,6 +567,46 @@ footer a{text-decoration:none;color:#CBC3C5}
   </div>
 </section>
 
+<section class="ux" id="experiencia">
+  <div class="wrap">
+    <h2>Pedir com você fica mais fácil<br><span class="hl">do que pedir pelo WhatsApp.</span></h2>
+    <p class="lead">Experiência boa vende mais. O cliente faz o pedido inteiro sozinho, em poucos toques, e você não precisa digitar nada.</p>
+    <div class="ux-grid">
+      <div class="chat" aria-label="Exemplo de pedido pelo WhatsApp">
+        <div class="chat-h"><span class="av"></span><div><b>Pedido pelo WhatsApp</b><small>visto por último hoje</small></div></div>
+        <div class="chat-b">
+          <p class="in">Boa noite! Tem cardápio?</p>
+          <p class="out">Boa noite! Segue a foto 📷</p>
+          <p class="in">Qual o preço da grande meio a meio?</p>
+          <p class="out">Depende dos sabores, quais?</p>
+          <p class="in">Calabresa e frango. Tem borda?</p>
+          <p class="out">Tem, catupiry +R$ 8</p>
+          <p class="in">Ok. Entrega no Centro quanto é?</p>
+          <p class="out">R$ 7. Me passa o endereço?</p>
+          <p class="in">Rua das Flores, 120</p>
+          <p class="out">Total R$ 74,90. Pix ou dinheiro?</p>
+          <p class="in">Pix. Mandei o comprovante</p>
+          <p class="out">Vou conferir aqui…</p>
+        </div>
+        <div class="chat-f"><b>12 mensagens</b> e alguém da loja preso no celular</div>
+      </div>
+      <div class="flow">
+        <div class="flow-h"><img src="assets/brand/orderflow-icone-96.png" alt="" width="34" height="34"><div><b>Pedido no OrderFlow</b><small>sem baixar app e sem cadastro</small></div><span class="badge4">4 toques</span></div>
+        <ol class="steps4">
+          <li><div class="ph"><img src="assets/img/cli-cardapio.webp" alt="Cardápio com a marca da loja" loading="lazy"></div><b>Abre o link</b><span>Cardápio com fotos, preços e a marca da loja</span></li>
+          <li><div class="ph"><img src="assets/img/cli-pizza.webp" alt="Montagem de pizza meio a meio" loading="lazy"></div><b>Monta o pedido</b><span>Meio a meio, borda e adicionais numa tela</span></li>
+          <li><div class="ph"><img src="assets/img/cli-pagamento.webp" alt="Pagamento por Pix ou cartão" loading="lazy"></div><b>Paga na hora</b><span>Pix, crédito ou débito, com a taxa já somada</span></li>
+          <li><div class="ph"><img src="assets/img/cli-acompanhar.webp" alt="Acompanhamento do pedido" loading="lazy"></div><b>Acompanha</b><span>Cada etapa atualiza sozinha no celular</span></li>
+        </ol>
+        <div class="flow-f">O pedido chega <b>pago e completo</b> no quadro da cozinha. Ninguém digitou nada.</div>
+      </div>
+    </div>
+    <ul class="ux-chips">
+      <li>Sem baixar aplicativo</li><li>Sem cadastro obrigatório</li><li>Taxa de entrega antes de fechar</li><li>Lembra os dados no próximo pedido</li><li>Pedido na mesa pelo QR</li><li>Avaliação depois da entrega</li>
+    </ul>
+  </div>
+</section>
+
 <section id="painel">
   <div class="wrap">
     <h2>O que você usa todo dia</h2>
@@ -566,6 +694,26 @@ footer a{text-decoration:none;color:#CBC3C5}
       <article><span class="big">IA</span><h3>Um assistente que conhece a loja</h3><p>Pergunte o que fazer para vender mais e receba ações baseadas nos seus próprios números.</p></article>
       <article><span class="big">24 h</span><h3>A gente monta para você</h3><p>Prévia grátis, loja no ar em até 24 h úteis, treinamento e suporte por WhatsApp. Sem fidelidade no plano mensal.</p></article>
     </div>
+  </div>
+</section>
+
+<section class="cmp" id="comparar">
+  <div class="wrap">
+    <h2>Lado a lado</h2>
+    <p class="lead">O que a sua loja ganha em cada jeito de vender. Sem letra miúda: onde os apps ganham, a gente mostra também.</p>
+    <div class="cmp-legend"><span class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg></span>Sim</span><span class="s-P"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg></span>Em parte</span><span class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg></span>Não</span></div>
+    <div class="cmp-box">
+      <table class="cmp-t">
+        <thead><tr><th scope="col" class="f"><span class="sr">Recurso</span></th><th scope="col" class=""><span>WhatsApp e caderno</span></th><th scope="col" class=""><span>Apps de delivery</span></th><th scope="col" class="of"><em>Recomendado</em><img src="assets/brand/orderflow-icone-96.png" alt="" width="28" height="28"><span>OrderFlow</span></th></tr></thead>
+        <tbody><tr class="grp"><th colspan="4" scope="colgroup">Vender</th></tr><tr><th scope="row">Cardápio com a marca da loja</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>marca do app</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">O cliente pede sozinho, a qualquer hora</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>depende de alguém responder</small></td><td class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">Sem comissão por pedido</th><td class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>12% a 23% + taxa</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>mensalidade fixa</small></td></tr><tr class="grp"><th colspan="4" scope="colgroup">Receber</th></tr><tr><th scope="row">Pix, crédito e débito online</th><td class="s-P"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg><span class="sr">Em parte</span></span><small>Pix com comprovante</small></td><td class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>no próprio cardápio</small></td></tr><tr><th scope="row">Dinheiro direto na conta da loja</th><td class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>repasse do app</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>sem intermediário</small></td></tr><tr><th scope="row">Pedido só entra depois de pago</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>sem calote</small></td></tr><tr class="grp"><th colspan="4" scope="colgroup">Gerir</th></tr><tr><th scope="row">Todos os pedidos num quadro só</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>conversa por conversa</small></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>um tablet por app</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>cardápio, balcão, iFood, 99 e Keeta</small></td></tr><tr><th scope="row">Quanto cada app levou de cada pedido</th><td class="s-X"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8 12h8"/></svg><span class="sr">Não se aplica</span></span></td><td class="s-P"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg><span class="sr">Em parte</span></span><small>cada app mostra o seu</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>pedido a pedido</small></td></tr><tr><th scope="row">Pedido na mesa pelo QR, pago na hora</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">Nota fiscal (NFC-e)</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>opcional</small></td></tr><tr class="grp"><th colspan="4" scope="colgroup">Crescer</th></tr><tr><th scope="row">O cliente é seu: contato e histórico</th><td class="s-P"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg><span class="sr">Em parte</span></span><small>no caderno</small></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span><small>o cliente é do app</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">Cupons e promoções do seu jeito</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-P"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg><span class="sr">Em parte</span></span><small>você paga a campanha</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">Avaliações e nota do Google no cardápio</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-P"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg><span class="sr">Em parte</span></span><small>só dentro do app</small></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">Assistente com IA dos seus números</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-S of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span></td></tr><tr><th scope="row">Traz clientes que não te conhecem</th><td class="s-N"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg><span class="sr">Não</span></span></td><td class="s-S"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.4l3.2 3.2L17 8.8"/></svg><span class="sr">Sim</span></span><small>o forte dos apps</small></td><td class="s-P of"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path class="h" d="M12 1a11 11 0 0 1 0 22z"/></svg><span class="sr">Em parte</span></span><small>Google, avaliações e IA</small></td></tr></tbody>
+        <tfoot><tr><th scope="row">Total de “sim”</th><td class=""><b>2</b><span>de 15</span><i style="--w:13%"></i></td><td class=""><b>4</b><span>de 15</span><i style="--w:27%"></i></td><td class="of"><b>14</b><span>de 15</span><i style="--w:93%"></i></td></tr></tfoot>
+      </table>
+    </div>
+    <div class="cmp-cta">
+      <p><b>Não precisa escolher.</b> Use os apps para ser encontrado e o OrderFlow para lucrar com quem já te conhece. Os pedidos dos dois caem no mesmo quadro.</p>
+      <a class="btn btn-main" href="#contato">Quero minha prévia grátis</a>
+    </div>
+    <p class="cmp-note">Comparação com o atendimento manual pelo WhatsApp e com os planos padrão de iFood, 99Food e Keeta. Comissões e condições dos apps variam por plano, praça e negociação.</p>
   </div>
 </section>
 
