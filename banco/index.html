@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Banco de cardápios · OrderFlow</title>
+<link rel="icon" type="image/png" href="../assets/brand/favicon-32.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1E1A1B;--ink2:#3A3335;--muted:#6B6466;--line:#E7E2E1;--ground:#F5F3F2;--orange:#F26522;--orange-d:#C2461A;--green:#1F7A4D;--green-soft:#E3F3EA;--amber:#8A5A10;--amber-soft:#FDF3E1;--red:#A3321F;--red-soft:#FBE9E6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.5 Geist,system-ui,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-left)) 60px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header img{width:36px;height:36px;border-radius:9px}
+h1{font:800 30px/1.1 'Bricolage Grotesque',Geist,sans-serif;letter-spacing:-.02em;margin:0}
+header p{margin:0;color:var(--muted);width:100%}
+.tabs{display:flex;gap:8px;margin:22px 0 14px}
+.tab{min-height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:#fff;font:600 15px Geist,sans-serif;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.filters input,.filters select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font:15px Geist,sans-serif;background:#fff;color:var(--ink)}
+@media(max-width:860px){.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}}
+.count{color:var(--muted);font-size:13.5px;margin:12px 2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--ground)}
+.card .b{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card b{font-size:14px;line-height:1.3}
+.card small{color:var(--muted);font-size:12.5px}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:auto;padding-top:6px}
+.tag{font:700 10.5px/1 Geist,sans-serif;padding:4px 7px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.t-ia{background:var(--green-soft);color:var(--green)}.t-loja{background:var(--red-soft);color:var(--red)}.t-confirmar{background:var(--amber-soft);color:var(--amber)}
+.copy{border:1px solid var(--line);background:#fff;border-radius:8px;font:600 12px Geist,sans-serif;padding:5px 8px;cursor:pointer}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat h3{margin:0 0 6px;font:700 15px Geist,sans-serif}
+.stat .n{font:800 26px/1 'Bricolage Grotesque',sans-serif;color:var(--orange-d)}
+.stat small{display:block;color:var(--muted);font-size:12.5px;margin-top:4px}
+.bar{height:6px;border-radius:99px;background:var(--ground);margin-top:10px;position:relative}
+.bar i{position:absolute;top:0;height:100%;border-radius:99px;background:var(--orange)}
+.tbl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:pointer;white-space:nowrap}
+td.p{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;text-align:right}
+td img{width:40px;height:40px;border-radius:8px;object-fit:cover;display:block}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink2);margin-top:10px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="../assets/brand/orderflow-icone-96.png" alt="">
+    <h1>Banco de cardápios</h1>
+    <p>Fotos e preços de todos os cardápios montados nas lojas de teste. Uso interno da OrderFlow.</p>
+  </header>
+  <div class="legend"><span class="tag t-ia">IA · livre</span> pode usar em qualquer loja <span class="tag t-loja">da loja</span> só na loja dona da foto <span class="tag t-confirmar">confirmar origem</span> conferir antes de reutilizar</div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-v="fotos">Fotos</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="precos">Preços</button>
+  </div>
+  <div class="filters">
+    <input id="q" type="search" placeholder="Buscar item (ex.: coca, hot roll, cappuccino)" aria-label="Buscar item">
+    <select id="fcat" aria-label="Categoria"></select>
+    <select id="fcid" aria-label="Cidade"></select>
+    <select id="floja" aria-label="Loja"></select>
+    <select id="forig" aria-label="Origem da foto"><option value="">Toda origem</option><option value="ia">IA · livre</option><option value="loja">Da loja</option><option value="confirmar">Confirmar origem</option></select>
+  </div>
+  <div class="count" id="count"></div>
+  <div id="fotos"></div>
+  <div id="precos" hidden></div>
+</div>
+<script>
+var D=[],view='fotos',sort={k:'preco',d:1};
+var brl=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})};
+var norm=function(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')};
+var ORIG={ia:['t-ia','IA · livre'],loja:['t-loja','da loja'],confirmar:['t-confirmar','confirmar origem']};
+function opts(el,label,vals){el.innerHTML='<option value="">'+label+'</option>'+vals.map(function(v){return '<option>'+v+'</option>'}).join('')}
+function uniq(k){return Array.from(new Set(D.map(function(x){return x[k]}))).sort(function(a,b){return a.localeCompare(b,'pt')})}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function filtered(){
+  var q=norm(document.getElementById('q').value).split(/\s+/).filter(Boolean),c=fcat.value,ci=fcid.value,l=floja.value,o=forig.value;
+  return D.filter(function(x){var t=norm(x.item+' '+x.desc+' '+x.cat);return q.every(function(w){return t.indexOf(w)>=0})&&(!c||x.cat===c)&&(!ci||x.cidade===ci)&&(!l||x.loja===l)&&(!o||x.origem===o)});
+}
+function render(){
+  var r=filtered();
+  if(view==='fotos'){
+    var f=r.filter(function(x){return x.img});
+    document.getElementById('count').textContent=f.length+' fotos';
+    document.getElementById('fotos').innerHTML=f.length?'<div class="grid">'+f.map(function(x){var o=ORIG[x.origem]||ORIG.confirmar;return '<article class="card"><img loading="lazy" src="'+esc(x.img)+'" alt="'+esc(x.item)+'"><div class="b"><b>'+esc(x.item)+'</b><small>'+esc(x.loja)+' · '+esc(x.cidade)+' · '+brl(x.preco)+'</small><div class="row"><span class="tag '+o[0]+'">'+o[1]+'</span><button class="copy" data-u="'+esc(/^https?:/.test(x.img)?x.img:'https://orderflow.tec.br'+x.img)+'">Copiar link</button></div></div></article>'}).join('')+'</div>':'<div class="empty">Nenhuma foto com esse filtro.</div>';
+  } else {
+    var p=r.filter(function(x){return x.preco>0});
+    document.getElementById('count').textContent=p.length+' itens com preço';
+    var by={};p.forEach(function(x){(by[x.cidade]=by[x.cidade]||[]).push(x.preco)});
+    var gmin=Math.min.apply(null,p.map(function(x){return x.preco})),gmax=Math.max.apply(null,p.map(function(x){return x.preco}));
+    var stats=Object.keys(by).sort().map(function(ci){var v=by[ci].slice().sort(function(a,b){return a-b}),mi=v[0],ma=v[v.length-1],me=v.reduce(function(s,x){return s+x},0)/v.length,md=v[Math.floor(v.length/2)];
+      var L=function(x){return gmax>gmin?((x-gmin)/(gmax-gmin)*100):0};
+      return '<div class="stat"><h3>'+esc(ci)+'</h3><span class="n">'+brl(me)+'</span><small>média de '+v.length+' itens · mediana '+brl(md)+'</small><small>de '+brl(mi)+' a '+brl(ma)+'</small><div class="bar"><i style="left:'+L(mi)+'%;width:'+Math.max(2,L(ma)-L(mi))+'%"></i></div></div>'}).join('');
+    p.sort(function(a,b){var x=a[sort.k],y=b[sort.k];return (typeof x==='number'?x-y:String(x).localeCompare(String(y),'pt'))*sort.d});
+    var cols=[['img',''],['item','Item'],['cat','Categoria'],['loja','Loja'],['cidade','Cidade'],['preco','Preço']];
+    document.getElementById('precos').innerHTML=(p.length?'<div class="stats">'+stats+'</div>':'')+'<div class="tbl"><table><thead><tr>'+cols.map(function(c){return '<th data-k="'+c[0]+'">'+c[1]+(sort.k===c[0]?(sort.d>0?' ↑':' ↓'):'')+'</th>'}).join('')+'</tr></thead><tbody>'+p.map(function(x){return '<tr><td>'+(x.img?'<img loading="lazy" src="'+esc(x.img)+'" alt="">':'')+'</td><td><b>'+esc(x.item)+'</b>'+(x.desc?'<br><small style="color:#6B6466">'+esc(x.desc)+'</small>':'')+'</td><td>'+esc(x.cat)+'</td><td>'+esc(x.loja)+'</td><td>'+esc(x.cidade)+'</td><td class="p">'+brl(x.preco)+'</td></tr>'}).join('')+'</tbody></table></div>';
+  }
+}
+document.addEventListener('click',function(e){
+  var t=e.target.closest('.tab');if(t){view=t.dataset.v;document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-selected',b===t)});document.getElementById('fotos').hidden=view!=='fotos';document.getElementById('precos').hidden=view!=='precos';render();return}
+  var c=e.target.closest('.copy');if(c){var u=c.dataset.u;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){c.textContent='Copiado'},function(){prompt('Link da foto:',u)});setTimeout(function(){c.textContent='Copiar link'},1500);return}
+  var h=e.target.closest('th[data-k]');if(h&&h.dataset.k!=='img'){sort.d=sort.k===h.dataset.k?-sort.d:1;sort.k=h.dataset.k;render()}
+});
+['q','fcat','fcid','floja','forig'].forEach(function(id){document.getElementById(id).addEventListener('input',render)});
+fetch('dados.json').then(function(r){return r.json()}).then(function(j){D=j.itens;opts(fcat,'Toda categoria',uniq('cat'));opts(fcid,'Toda cidade',uniq('cidade'));opts(floja,'Toda loja',uniq('loja'));render()});
+</script>
+</body>
+</html>

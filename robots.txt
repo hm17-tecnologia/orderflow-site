@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /social/
 Disallow: /lojas-teste/
+Disallow: /banco/
