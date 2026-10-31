@@ -992,6 +992,26 @@ var ofSrc=(function(){
   return saved;
 })();
 
+/* De onde veio quem clica no WhatsApp: entra no texto da conversa, pra saber a origem sem perguntar */
+function ofOrigem(){
+  var s=(ofSrc.utm_source||'').toLowerCase(), r=(ofSrc.referrer||'').toLowerCase();
+  if(ofSrc.gclid)return 'anúncio do Google';
+  if(ofSrc.fbclid&&/ig|insta/.test(s+r))return 'anúncio do Instagram';
+  if(ofSrc.fbclid)return 'anúncio do Facebook';
+  if(/^(ig|insta)/.test(s)||r.indexOf('instagram.')>=0)return 'Instagram';
+  if(/^(fb|face)/.test(s)||r.indexOf('facebook.')>=0)return 'Facebook';
+  if(/google/.test(s)||r.indexOf('google.')>=0)return 'Google';
+  if(/whats|wa/.test(s)||r.indexOf('whatsapp')>=0)return 'WhatsApp';
+  if(s)return s.slice(0,30);
+  if(r){try{return new URL(r).hostname.replace(/^www\./,'')}catch(e){}}
+  return 'site';
+}
+(function(){var o=ofOrigem();
+  document.querySelectorAll('a[href*="wa.me"][href*="text="]').forEach(function(a){
+    try{var u=new URL(a.href),t=u.searchParams.get('text')||'';if(t.indexOf('(vim pelo')<0)a.href=u.origin+u.pathname+'?text='+encodeURIComponent(t+' (vim pelo '+o+')')}catch(e){}
+  });
+})();
+
 /* Pixel da Meta e Google Analytics: IDs vêm do painel (aba Marketing) */
 function ofTrack(ev,params){try{if(window.fbq)fbq('track',ev,params||{});if(window.gtag)gtag('event',ev==='Lead'?'generate_lead':ev==='Contact'?'contact':ev.toLowerCase(),params||{})}catch(e){}}
 fetch(OF_API+'/api/public/site-config').then(function(r){return r.json()}).then(function(c){
@@ -1036,6 +1056,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   var cidade=g('f-cidade');
   var t='*Pedido de prévia pelo site*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg')+'\n*Pagamento:* '+g('f-pgto');
   if(g('f-msg')) t+='\n\n*Mensagem:*\n'+g('f-msg');
+  t+='\n*Origem:* '+ofOrigem();
   var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),plan_interest:g('f-pgto'),message:g('f-msg'),website:g('f-site'),optin:document.getElementById('f-optin').checked},ofSrc);
   try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
   ofTrack('Lead',{content_name:g('f-seg')});
