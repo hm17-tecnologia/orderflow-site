@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /social/
 Disallow: /lojas-teste/
 Disallow: /banco/
+
+Sitemap: https://orderflow.tec.br/sitemap.xml
