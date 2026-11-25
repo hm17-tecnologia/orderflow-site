@@ -12,25 +12,540 @@
 <meta property="og:image" content="https://orderflow.tec.br/assets/img/cli-pizza.webp">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+<link rel="preload" as="image" href="../assets/img/ger-pedidos.webp" imagesrcset="../assets/img/ger-pedidos-800.webp 800w, ../assets/img/ger-pedidos.webp 1600w" imagesizes="(max-width:760px) 260px, (max-width:1000px) 88vw, 620px" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/seo.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Dá para fazer pizza meio a meio?", "acceptedAnswer": {"@type": "Answer", "text": "Dá. O cliente escolhe os dois sabores, a borda e os adicionais no próprio cardápio, e o preço é calculado pela regra da sua pizzaria."}}, {"@type": "Question", "name": "Preciso sair do iFood?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Os pedidos do iFood, da 99Food e da Keeta entram no mesmo quadro, e você convida quem já é cliente a pedir direto com você, sem comissão."}}, {"@type": "Question", "name": "Quanto custa?", "acceptedAnswer": {"@type": "Answer", "text": "R$ 149,80 por mês no cartão ou R$ 169,80 no PIX, com pedidos ilimitados e sem comissão. A prévia do seu cardápio é grátis."}}, {"@type": "Question", "name": "Em quanto tempo a pizzaria entra no ar?", "acceptedAnswer": {"@type": "Answer", "text": "Até 24 horas úteis depois que você envia o cardápio, a logo e as informações da loja. A gente monta e você revisa."}}]}</script>
+<style>
+:root{--green:#1F7A4D;--green-soft:#E6F3EC;--dark:#1E1A1B}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible,video:focus-visible{outline:3px solid var(--orange-d);outline-offset:3px;border-radius:6px}
+.dk a:focus-visible,.dk [tabindex]:focus-visible{outline-color:#fff}
+.btn{min-height:52px}
+.brand{min-height:44px}
+.faq details{padding:0}
+.faq summary{padding:16px 20px;min-height:52px}
+.faq details p{padding:0 20px 16px;margin:0}
+.btn.wa{background:var(--green);color:#fff;border:0}
+.btn svg{margin-right:8px;flex:none}
+.sec-h{max-width:720px;margin-bottom:36px}
+.sec-h h2{margin-bottom:12px}
+.sec-h p{margin:0;font-size:18px;color:var(--ink2)}
+.kick{margin-bottom:12px;line-height:1.35}
+
+/* Topo */
+.h2o{padding:48px 0 56px;background:linear-gradient(180deg,#FFF4EC 0%,#fff 100%);overflow:hidden}
+.h2o .wrap{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:44px;align-items:center}
+.h2o h1{font-size:clamp(34px,4.6vw,56px)}
+.h2o .lead{margin:18px 0 24px}
+.h2o .lead b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.chips li{font-size:14px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink2)}
+.price{font-size:15px;color:var(--ink2);margin-top:16px}
+.price b{color:var(--ink)}
+.cities{font-size:14px;color:var(--muted);margin:8px 0 0}
+
+/* Mockup notebook + celular */
+.dev{position:relative;padding:0 0 6% 0}
+.lap{width:88%;background:#2A2526;border-radius:14px;padding:9px 9px 0;box-shadow:0 40px 80px -34px rgba(30,26,27,.5);position:relative}
+.lap img{border-radius:6px 6px 0 0;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;background:#f5f3f2}
+.lap::after{content:"";position:absolute;left:-5%;right:-5%;bottom:-12px;height:12px;background:linear-gradient(#ddd8d6,#bdb6b4);border-radius:0 0 14px 14px}
+.cel{background:#141011;border-radius:36px;padding:8px;box-shadow:0 30px 50px -20px rgba(30,26,27,.6);position:relative}
+.cel::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:28%;height:18px;border-radius:12px;background:#141011;z-index:2}
+.cel img{border-radius:28px;width:100%;aspect-ratio:780/1688;object-fit:cover;object-position:top;background:#fff}
+.dev .cel{position:absolute;right:0;bottom:0;width:31%}
+.dev-cap{position:absolute;left:4%;bottom:-4px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 10px;font-size:13.5px;font-weight:600;box-shadow:0 10px 26px -12px rgba(30,26,27,.3);z-index:3}
+.dev-cap i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+
+/* Faixa de confiança */
+.trust{background:var(--dark);color:#fff;padding:22px 0}
+.trust ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.trust li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px}
+.trust svg{flex:none;color:#FF8A4C}
+
+/* Como o cliente pede */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:st}
+.flow li{counter-increment:st;display:flex;flex-direction:column}
+.flow .cel{border-radius:30px;padding:6px}
+.flow .cel::before{top:11px;height:14px}
+.flow .cel img{border-radius:24px}
+.flow h3{display:flex;align-items:center;gap:10px;margin:18px 0 4px;font-size:19px}
+.flow h3::before{content:counter(st);flex:none;width:28px;height:28px;border-radius:50%;background:var(--orange-d);color:#fff;font:800 14px/28px var(--display);text-align:center;letter-spacing:0}
+.flow p{margin:0;color:var(--ink2);font-size:15.5px}
+.swipe{display:none;font-size:14px;color:var(--muted);margin:14px 0 0}
+.flow-note{margin:32px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.flow-note span{font-size:14px;background:var(--orange-soft);color:var(--orange-d);font-weight:600;border-radius:999px;padding:6px 12px}
+
+/* Painel: blocos alternados */
+.painel{background:var(--ground)}
+.blk{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center}
+.blk+.blk{margin-top:72px}
+.blk.rev .media{order:2}
+.blk h3{font-size:clamp(24px,2.6vw,30px);line-height:1.12;margin-bottom:12px}
+.blk p{margin:0 0 14px;color:var(--ink2)}
+.blk ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.blk li{display:flex;gap:10px;font-size:16px}
+.blk li svg{flex:none;margin-top:4px;color:var(--green)}
+.brw{border-radius:14px;border:1px solid var(--line);background:#fff;box-shadow:0 30px 60px -32px rgba(30,26,27,.4);overflow:hidden}
+.brw .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line);background:#FBFAF9}
+.brw .bar i{width:9px;height:9px;border-radius:50%;background:#E3DEDC}
+.brw .bar span{margin-left:8px;font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:2px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.brw img{width:100%}
+.brw.sal img{max-width:520px;margin:0 auto;padding:10px}
+.apps{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.apps-h{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;font-weight:700;margin-bottom:10px}
+.apps-h small{font-weight:500;color:var(--muted)}
+.tks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tk{border:1px solid var(--line);border-radius:10px;padding:8px;display:grid;gap:4px;font-size:12.5px;min-width:0}
+.tk b{font-size:13px}
+.tk em{font-style:normal;color:var(--muted)}
+.tag{justify-self:start;font:700 10.5px/1 var(--body);padding:4px 7px;border-radius:999px;white-space:nowrap}
+.tag.if{background:#EA1D2C;color:#fff}.tag.nn{background:#F5B700;color:#1E1A1B}.tag.kt{background:#FFE14D;color:#1E1A1B}.tag.pr{background:var(--orange-soft);color:var(--orange-d)}
+
+/* Recursos */
+.feat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.feat article{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+.feat .ic{width:44px;height:44px;border-radius:12px;background:var(--orange-soft);color:var(--orange-d);display:grid;place-items:center;margin-bottom:14px}
+.feat h3{font-size:18.5px;line-height:1.2}
+.feat p{margin:0;color:var(--ink2);font-size:15.5px}
+.feat .new{display:inline-block;margin-left:6px;font:700 11px/1 var(--body);background:var(--green-soft);color:var(--green);border-radius:999px;padding:4px 7px;vertical-align:3px;letter-spacing:0}
+
+/* Comparação */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:980px}
+.vs>div{border-radius:18px;padding:26px}
+.vs .com{background:var(--ground);border:1px solid var(--line)}
+.vs .of{background:#fff;border:2px solid var(--orange-d);box-shadow:0 24px 50px -30px rgba(194,70,26,.45)}
+.vs h3{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.vs ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.vs li{display:flex;gap:10px;font-size:16px}
+.vs li svg{flex:none;margin-top:3px}
+.vs .com svg{color:#9B9294}
+.vs .of svg{color:var(--green)}
+.vs-note{margin:20px 0 0;max-width:980px;color:var(--ink2)}
+.fine{font-size:13.5px;color:var(--muted);margin:12px 0 0;max-width:980px}
+
+/* Vídeo */
+.vid{background:var(--dark);color:#fff}
+.vid .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:48px;align-items:center}
+.vid h2{color:#fff}
+.vid p{color:#D9D2D3;font-size:18px;margin:0 0 24px}
+.vid video{width:100%;height:auto;max-width:320px;margin:0 auto;display:block;border-radius:24px;aspect-ratio:720/1280;background:#000;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+
+/* Preço */
+.plan{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0;border:2px solid var(--orange-d);border-radius:22px;overflow:hidden;max-width:980px;background:#fff}
+.plan-a{background:var(--orange-soft);padding:32px}
+.plan-a .nm{font-weight:700;font-size:17px}
+.amount{display:flex;align-items:flex-start;gap:4px;margin:10px 0 4px;font-family:var(--display);color:var(--ink)}
+.amount small{font-size:22px;font-weight:700;margin-top:10px}
+.amount b{font-size:64px;line-height:1;font-weight:800;letter-spacing:-.03em}
+.amount em{font-style:normal;font-size:26px;font-weight:800;margin-top:6px}
+.amount span{align-self:flex-end;font:500 16px/1.4 var(--body);color:var(--ink2);margin:0 0 8px 6px}
+.plan-a p{margin:0 0 6px;color:var(--ink2);font-size:15.5px}
+.plan-a .btn{margin-top:18px;width:100%}
+.plan-b{padding:32px}
+.plan-b ul{margin:0 0 20px;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.plan-b li{display:flex;gap:8px;font-size:15.5px}
+.plan-b li svg{flex:none;margin-top:4px;color:var(--green)}
+.addons{border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+.addons p{display:flex;justify-content:space-between;gap:12px;margin:6px 0 0;color:var(--ink2)}
+
+/* Passos */
+.steps3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:p}
+.steps3 li{counter-increment:p;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.steps3 li::before{content:counter(p);display:block;width:36px;height:36px;border-radius:50%;background:var(--orange-d);color:#fff;font:800 17px/36px var(--display);text-align:center;margin-bottom:14px}
+.steps3 h3{font-size:19px}
+.steps3 p{margin:0;color:var(--ink2);font-size:16px}
+
+/* CTA final */
+.cta .lead2{color:#D9D2D3;font-size:18px;margin:-12px auto 26px;max-width:56ch}
+.cta .ctas{justify-content:center}
+.cta .price{color:#BDB4B6}
+
+/* Formulário de prévia (mesma lógica da home) */
+.contact{background:var(--orange-soft)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.contact h2{margin-bottom:14px}
+.contact .lead3{font-size:18px;color:var(--ink2);margin:0 0 20px}
+.contact ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.contact li{display:flex;gap:10px;font-size:16px}
+.contact li svg{flex:none;margin-top:4px;color:var(--green)}
+.form{background:#fff;color:var(--ink);border-radius:20px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(194,70,26,.45);position:relative}
+.form label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14.5px}
+.form input,.form select{min-height:50px;padding:0 14px;border:1px solid #CFC8C6;border-radius:12px;font:16px var(--body);color:var(--ink);background:#fff;width:100%;min-width:0}
+.form input:focus,.form select:focus{outline:none;border-color:var(--orange-d);box-shadow:0 0 0 3px #F8D5C2}
+.form label.optin{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;font-size:14px;color:var(--muted);line-height:1.45;cursor:pointer;min-height:36px}
+.form label.optin input{width:20px;height:20px;min-height:0;min-width:20px;padding:0;margin-top:1px;accent-color:var(--orange-d)}
+.form .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.form .err{color:#A3321F;font-size:14px;font-weight:600;min-height:1em}
+.form .err:empty{display:none}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .note{margin:0;font-size:13px;color:var(--muted)}
+.form .note a{color:inherit}
+.form>.btn{width:100%;border:0;cursor:pointer}
+.form-ok{display:none;text-align:center;padding:12px 4px;gap:14px;justify-items:center}
+.form.sent>*:not(.form-ok){display:none}
+.form.sent .form-ok{display:grid}
+.form-ok .ok-ico{width:56px;height:56px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center}
+.form-ok h3{margin:0;font-size:22px}
+.form-ok p{margin:0;color:var(--ink2);font-size:15.5px;max-width:420px}
+.form-ok .btn{width:100%;max-width:360px}
+.form-ok .again{background:none;border:0;color:var(--muted);font:500 14px var(--body);text-decoration:underline;cursor:pointer;padding:10px;min-height:44px}
+@media(max-width:900px){.contact .wrap{grid-template-columns:1fr;gap:28px}}
+@media(max-width:560px){.form{padding:20px}.form .two{grid-template-columns:minmax(0,1fr)}}
+
+@media(max-width:1000px){
+  .h2o .wrap{grid-template-columns:1fr;gap:36px}
+  .dev{max-width:640px}
+  .feat{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .blk,.vid .wrap{grid-template-columns:1fr;gap:28px}
+  .blk.rev .media{order:0}
+  .trust ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .plan{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  section{padding:52px 0}
+  .h2o{padding:32px 0 44px}
+  .h2o .lead{font-size:17.5px}
+  .ctas .btn{width:100%}
+  .sec-h{margin-bottom:26px}
+  .sec-h p{font-size:17px}
+  .flow{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:4px 20px 12px;scroll-padding:0 20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .flow::-webkit-scrollbar{display:none}
+  .flow li{flex:0 0 64%;scroll-snap-align:start}
+  .swipe{display:block}
+  .blk+.blk{margin-top:52px}
+  .brw:not(.sal) img{aspect-ratio:1/1;object-fit:cover;object-position:50% 0}
+  .dev .cel{width:34%}
+  .vid video{max-width:280px}
+  .tks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps3,.vs{grid-template-columns:1fr}
+  .plan-a,.plan-b{padding:24px}
+  .plan-b ul{grid-template-columns:1fr}
+  .trust li{font-size:15px}
+  .dev-cap{font-size:12.5px;left:0}
+}
+@media(max-width:560px){
+  .feat{grid-template-columns:1fr}
+  .feat article{display:grid;grid-template-columns:44px 1fr;gap:0 14px;padding:18px}
+  .feat .ic{margin:0;grid-row:span 2}
+  .vs>div{padding:22px}
+}
+
+/* Destaque do ramo */
+.spot{background:var(--ground)}
+.spot .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:center}
+.spot.wide .wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.spot .ph-big{max-width:300px;margin:0 auto}
+.spot h2{margin-bottom:12px}
+.spot .sub{font-size:18px;color:var(--ink2);margin:0 0 20px}
+.spot ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.spot li{display:flex;gap:10px;font-size:16.5px}
+.spot li svg{flex:none;margin-top:4px;color:var(--green)}
+.spot li b{color:var(--ink)}
+.dev .hs{width:84%}
+.dev .hs img{max-width:none;padding:8px}
+
+.bill{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 30px 60px -34px rgba(30,26,27,.4);display:grid;gap:10px;font-size:16px}
+.bill-h{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:17px;margin-bottom:4px}
+.bill-h small{font-weight:500;color:var(--muted);font-size:13px}
+.bill .row{display:flex;justify-content:space-between;gap:12px;color:var(--ink2);border-bottom:1px dashed var(--line);padding-bottom:10px}
+.bill .row span:last-child,.bill .row b{white-space:nowrap}
+@media(max-width:560px){.bill{padding:18px;font-size:15px}}
+.bill .row.tot{border:0;color:var(--ink);font-weight:600;font-size:18px}
+.bill .rep{background:var(--green-soft);color:var(--green);font-weight:600;border-radius:10px;padding:10px 12px;font-size:15px}
+@media(max-width:1000px){.spot .wrap,.spot.wide .wrap{grid-template-columns:1fr;gap:32px}}
+@media(max-width:760px){.spot .ph-big{max-width:230px}.dev .hs{width:86%}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Dá para fazer pizza meio a meio?", "acceptedAnswer": {"@type": "Answer", "text": "Dá. O cliente escolhe os dois sabores, a borda e os adicionais no próprio cardápio. No meio a meio, o valor é o do sabor mais caro."}}, {"@type": "Question", "name": "Em quanto tempo a pizzaria entra no ar?", "acceptedAnswer": {"@type": "Answer", "text": "Até 24 horas úteis depois que você envia o cardápio, a logo e as informações da loja. A gente monta e você revisa."}}, {"@type": "Question", "name": "Quanto custa?", "acceptedAnswer": {"@type": "Answer", "text": "R$ 149,80/mês no cartão de crédito (R$ 169,80 pagando por PIX) · pedidos ilimitados · sem fidelidade. Sem comissão por pedido. A prévia do seu cardápio é grátis."}}, {"@type": "Question", "name": "Preciso sair do iFood?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Os pedidos do iFood, da 99Food e da Keeta entram no mesmo quadro, e você convida quem já é cliente a pedir direto com você, sem comissão."}}, {"@type": "Question", "name": "Dá trabalho mudar de sistema?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Você manda o cardápio, a logo e as fotos que tiver, e a gente cadastra tudo. Você só confere e divulga o link."}}, {"@type": "Question", "name": "O OrderFlow emite nota fiscal?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, como opcional (+ R$ 39,90 por mês): a NFC-e, emitida a partir do pedido. A loja precisa do certificado digital A1 e do CSC da Sefaz, e a gente ajuda a configurar."}}, {"@type": "Question", "name": "Como funciona o suporte?", "acceptedAnswer": {"@type": "Answer", "text": "Pelo WhatsApp, com gente de verdade, para tirar dúvidas e ajustar a loja."}}, {"@type": "Question", "name": "Tem fidelidade?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Sem fidelidade e sem multa. Para cancelar, é só avisar com 60 dias."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "OrderFlow", "item": "https://orderflow.tec.br/"}, {"@type": "ListItem", "position": 2, "name": "Cardápio digital para pizzaria, sem comissão por pedido", "item": "https://orderflow.tec.br/cardapio-digital-para-pizzaria/"}]}</script>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="../"><img src="../assets/brand/orderflow-icone-96.png" alt="" width="32" height="32">OrderFlow</a><a class="btn" href="../#contato">Quero minha prévia grátis</a></div></header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ok" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+</svg>
+<header class="top"><div class="wrap"><a class="brand" href="../"><img src="../assets/brand/orderflow-icone-96.png" alt="" width="32" height="32">OrderFlow</a><a class="btn" href="#contato">Quero minha prévia grátis</a></div></header>
 <main>
-<section class="hero"><div class="wrap grid">
-<div><p class="kick">Pizzaria</p><h1>Cardápio digital para pizzaria, <span class="hl">sem comissão por pedido</span></h1><p class="lead">Seu cliente monta a pizza no celular, meio a meio, com borda e adicionais, paga no PIX e o pedido chega pronto no seu painel. Sem anotar no WhatsApp e sem dividir o lucro com aplicativo.</p>
-<div class="ctas"><a class="btn" href="../#contato">Quero minha prévia grátis</a><a class="btn ghost" href="https://wa.me/551152171727?text=Olá!%20Vi%20a%20página%20de%20pizzaria%20e%20quero%20a%20prévia%20grátis%20do%20meu%20cardápio." target="_blank" rel="noopener">Falar no WhatsApp</a></div>
-<p class="price">R$ 149,80/mês no cartão · R$ 169,80 no PIX · sem comissão · pedidos ilimitados</p></div>
-<img class="shot" src="../assets/img/cli-pizza.webp" alt="Montagem de pizza meio a meio no cardápio digital pelo celular" loading="eager"></div></section>
-<section><div class="wrap"><h2>O que vem no OrderFlow</h2><div class="cards"><article><h3>Meio a meio e bordas</h3><p>O cliente escolhe os sabores, a borda e os adicionais, e o preço é calculado sozinho pela regra da sua pizzaria.</p></article><article><h3>PIX que se confirma sozinho</h3><p>O pedido só entra no quadro depois de pago, e o dinheiro cai direto na conta da pizzaria. Ninguém confere comprovante no meio da sexta.</p></article><article><h3>iFood, 99Food e Keeta no mesmo quadro</h3><p>Os pedidos dos apps chegam junto com os do seu cardápio, com o mesmo aviso e a mesma impressão.</p></article><article><h3>Taxa de entrega do seu jeito</h3><p>Fixa, grátis, por bairro ou por distância, com pedido mínimo se quiser.</p></article><article><h3>Salão e mesas</h3><p>Pizzaria com salão usa o mapa das mesas e a conta aberta no mesmo painel.</p></article><article><h3>Quanto sobra de cada canal</h3><p>Relatórios separam cardápio próprio, balcão, telefone e apps, com o que cada app descontou.</p></article></div></div></section>
-<section class="steps"><div class="wrap"><h2>Como começar</h2><ol><li><b>Peça a prévia grátis.</b> Você manda o cardápio, a logo e as informações da loja.</li><li><b>A gente monta.</b> Em até 24 horas úteis o seu cardápio está pronto para você testar no celular.</li><li><b>Divulgue o seu link.</b> No Instagram, no WhatsApp e com o QR Code no balcão e nas mesas.</li></ol></div></section>
-<section><div class="wrap"><h2>Perguntas frequentes</h2><div class="faq"><details><summary>Dá para fazer pizza meio a meio?</summary><p>Dá. O cliente escolhe os dois sabores, a borda e os adicionais no próprio cardápio, e o preço é calculado pela regra da sua pizzaria.</p></details><details><summary>Preciso sair do iFood?</summary><p>Não. Os pedidos do iFood, da 99Food e da Keeta entram no mesmo quadro, e você convida quem já é cliente a pedir direto com você, sem comissão.</p></details><details><summary>Quanto custa?</summary><p>R$ 149,80 por mês no cartão ou R$ 169,80 no PIX, com pedidos ilimitados e sem comissão. A prévia do seu cardápio é grátis.</p></details><details><summary>Em quanto tempo a pizzaria entra no ar?</summary><p>Até 24 horas úteis depois que você envia o cardápio, a logo e as informações da loja. A gente monta e você revisa.</p></details></div>
-<p class="more">Veja também: <a href="../sistema-para-hamburgueria/">Hamburgueria</a><a href="../sistema-para-restaurante-com-mesas/">Restaurante com salão</a><a href="../cardapio-digital-para-doceria/">Doceria e encomendas</a><a href="../cardapio-digital-baixada-santista/">Baixada Santista</a><a href="../">Página inicial</a></p></div></section>
-<section class="cta"><div class="wrap"><h2>Veja o seu cardápio funcionando antes de decidir</h2><a class="btn" href="../#contato">Quero minha prévia grátis</a></div></section>
+
+<section class="h2o"><div class="wrap">
+  <div>
+    <p class="kick">Pizzaria</p>
+    <h1>Cardápio digital para pizzaria, <span class="hl">sem comissão por pedido</span></h1>
+    <p class="lead">O cliente monta a pizza <b>meio a meio</b>, com borda e adicionais, paga no Pix ou no cartão, e os pedidos do <b>iFood e da 99Food</b> caem no mesmo painel. Mensalidade fixa, sem taxa por pedido.</p>
+    <div class="ctas">
+      <a class="btn" href="#contato">Quero minha prévia grátis</a>
+      <a class="btn wa" href="https://wa.me/551152171727?text=Ol%C3%A1%21%20Tenho%20uma%20pizzaria%20e%20quero%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20card%C3%A1pio%20da%20minha%20loja." target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3L3 21z"/></svg>Tirar dúvidas no WhatsApp</a>
+    </div>
+    <ul class="chips" aria-label="O que a sua pizzaria vende pelo cardápio">
+      <li>Meio a meio</li><li>Bordas e massas</li><li>Tamanhos</li><li>Adicionais</li><li>Combos</li>
+    </ul>
+    <p class="price"><b>R$ 149,80/mês</b> no cartão de crédito (R$ 169,80 pagando por PIX) · pedidos ilimitados · sem fidelidade</p>
+    <p class="cities">Implantação online e suporte pelo WhatsApp.</p>
+  </div>
+  <div class="dev">
+    <div class="lap"><img src="../assets/img/ger-pedidos.webp" srcset="../assets/img/ger-pedidos-800.webp 800w, ../assets/img/ger-pedidos.webp 1600w" sizes="(max-width:760px) 260px, (max-width:1000px) 88vw, 620px" width="1600" height="1000" fetchpriority="high" alt="Painel do OrderFlow com o quadro de pedidos dividido nas etapas Aguardando, Confirmado, Preparando, Pronto e Em entrega"></div>
+    <div class="cel"><img src="../assets/img/cli-pizza.webp" srcset="../assets/img/cli-pizza-400.webp 400w, ../assets/img/cli-pizza.webp 780w" sizes="(max-width:760px) 120px, 200px" width="780" height="1688" loading="lazy" alt="Montagem de pizza meio a meio no celular, com dois sabores marcados e a borda"></div>
+    <div class="dev-cap" aria-hidden="true"><i></i>O cliente monta a pizza, o pedido cai no painel</div>
+  </div>
+</div></section>
+
+<div class="trust"><div class="wrap"><ul>
+  <li><svg width="22" height="22" aria-hidden="true"><use href="#ok"/></svg>Sem comissão por pedido</li>
+  <li><svg width="22" height="22" aria-hidden="true"><use href="#ok"/></svg>Sem fidelidade</li>
+  <li><svg width="22" height="22" aria-hidden="true"><use href="#ok"/></svg>Prévia grátis em 24h úteis</li>
+  <li><svg width="22" height="22" aria-hidden="true"><use href="#ok"/></svg>Suporte pelo WhatsApp</li>
+</ul></div></div>
+
+<section class="spot" id="meio-a-meio"><div class="wrap">
+  <div class="ph-big"><div class="cel"><img src="../assets/img/cli-pizza.webp" width="780" height="1688" loading="lazy" alt="Tela de montagem de pizza meio a meio, com a escolha de dois sabores e da borda"></div></div>
+  <div>
+    <p class="kick">Meio a meio sem confusão</p>
+    <h2>A pizza chega na cozinha do jeito que o cliente montou</h2>
+    <p class="sub">Nada de anotar sabor por sabor no WhatsApp. O cliente escolhe tudo numa tela só, e o preço sai certo.</p>
+    <ul>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg><span><b>Meio a meio com dois sabores.</b> O valor é o do sabor mais caro.</span></li>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg><span><b>Borda e massa</b> somam ao preço sozinhas.</span></li>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg><span><b>Tamanhos</b> como broto, média e grande, cada um com o seu preço.</span></li>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg><span><b>Adicionais e observações</b> saem escritos na comanda.</span></li>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg><span><b>Combos</b> com pizza e bebida.</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="cliente"><div class="wrap">
+  <div class="sec-h"><p class="kick">O cardápio online</p><h2>Como o seu cliente pede a pizza</h2><p>Pelo link da pizzaria, no celular. Sem baixar aplicativo. Estas são telas reais da nossa loja de exemplo.</p></div>
+  <ol class="flow" tabindex="0" aria-label="Passo a passo do pedido no celular">
+    <li><div class="cel"><img src="../assets/img/cli-cardapio.webp" width="780" height="1688" loading="lazy" alt="Topo do cardápio com a logo da loja, horário de funcionamento, tempo de entrega e os produtos mais pedidos"></div><h3>Abre o seu cardápio</h3><p>Com a sua logo, as suas cores, fotos e preços.</p></li>
+    <li><div class="cel"><img src="../assets/img/cli-cardapio-lista.webp" width="780" height="1688" loading="lazy" alt="Lista de produtos com fotos, descrição e preço, e o selo de mais pedido"></div><h3>Escolhe a pizza</h3><p>Fotos, preços e o selo de mais pedido.</p></li>
+    <li><div class="cel"><img src="../assets/img/cli-sacola.webp" width="780" height="1688" loading="lazy" alt="Sacola com os itens escolhidos, subtotal, taxa de entrega e total"></div><h3>Vê o total na sacola</h3><p>A taxa de entrega aparece antes de fechar.</p></li>
+    <li><div class="cel"><img src="../assets/img/cli-acompanhar.webp" width="780" height="1688" loading="lazy" alt="Acompanhamento do pedido com as etapas recebido, confirmado e preparando, e o pagamento PIX marcado como pago"></div><h3>Paga e acompanha</h3><p>Pix ou cartão. Cada etapa atualiza sozinha.</p></li>
+  </ol>
+  <p class="swipe" aria-hidden="true">Arraste para o lado para ver os 4 passos &rarr;</p>
+  <div class="flow-note"><span>Sem baixar app</span><span>Pedido na mesa pelo QR</span><span>Lembra os dados no próximo pedido</span><span>Avaliação depois da entrega</span></div>
+</div></section>
+
+<section class="painel" id="painel"><div class="wrap">
+  <div class="sec-h"><p class="kick">O painel da loja</p><h2>O que você vê no painel</h2><p>Uma tela para a loja inteira. Funciona no computador, no tablet e no celular.</p></div>
+
+  <div class="blk">
+    <div class="media"><div class="brw"><div class="bar"><i></i><i></i><i></i><span>Pedidos</span></div><img src="../assets/img/ger-pedidos.webp" width="1600" height="1000" loading="lazy" alt="Quadro de pedidos com cartões por etapa, tempo de espera de cada pedido, forma de pagamento e selo de PIX pago"></div>
+      <div class="apps" role="img" aria-label="Exemplo ilustrativo: pedidos do cardápio próprio, iFood, 99Food e Keeta no mesmo quadro, cada um com a etiqueta do canal">
+        <div class="apps-h">Pedidos dos apps no mesmo quadro <small>exemplo ilustrativo</small></div>
+        <div class="tks">
+          <div class="tk"><span class="tag pr">Seu cardápio</span><b>#1042</b><em>entrega</em></div>
+          <div class="tk"><span class="tag if">iFood</span><b>#1963</b><em>há 1 min</em></div>
+          <div class="tk"><span class="tag nn">99Food</span><b>#3071</b><em>preparando</em></div>
+          <div class="tk"><span class="tag kt">Keeta</span><b>#5520</b><em>saiu para entrega</em></div>
+        </div>
+      </div></div>
+    <div>
+      <h3>Sexta à noite num quadro só</h3>
+      <p>Cardápio próprio, balcão, telefone, mesas, iFood, 99Food e Keeta chegam no mesmo lugar, com o mesmo aviso e a mesma impressão.</p>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Tempo de espera de cada pedido e aviso de atraso</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Pix pago marcado sozinho, sem comprovante</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>As etapas voltam para o app sozinhas</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Comanda impressa com sabores, borda e observações</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="blk rev">
+    <div class="media"><div class="brw"><div class="bar"><i></i><i></i><i></i><span>Cardápio</span></div><img src="../assets/img/ger-cardapio.webp" width="1600" height="1000" loading="lazy" alt="Edição do cardápio com seções, fotos dos produtos, preços e botão de liga e desliga"></div></div>
+    <div>
+      <h3>Sabores e preços que você mesmo edita</h3>
+      <p>Acabou um sabor? Desligue com um toque. Mudou o preço? O cliente vê na hora.</p>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Sabores, bordas, massas e adicionais</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Liga e desliga produto com um toque</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Arraste para mudar a ordem</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="blk">
+    <div class="media"><div class="brw sal"><div class="bar"><i></i><i></i><i></i><span>Salão</span></div><img src="../assets/img/ger-salao.webp" width="650" height="590" loading="lazy" alt="Mapa do salão com mesas redondas, quadradas e retangulares, uma ocupada com o valor consumido e as outras livres"></div></div>
+    <div>
+      <h3>Tem salão? As mesas também ficam no painel</h3>
+      <p>O desenho do seu salão na tela, com a conta de cada mesa aberta até o fechamento.</p>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Conta aberta até o fechamento, com taxa de serviço</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Garçom lança pelo painel ou o cliente pede pelo QR da mesa</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Divide por pessoa, por item ou por valor</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="blk rev">
+    <div class="media"><div class="brw"><div class="bar"><i></i><i></i><i></i><span>Relatórios</span></div><img src="../assets/img/ger-analytics.webp" width="1600" height="1000" loading="lazy" alt="Relatórios com receita, número de pedidos, ticket médio, clientes e gráfico de receita por dia"></div></div>
+    <div>
+      <h3>Relatórios para saber o que vende mais</h3>
+      <p>Receita, ticket médio, horário de pico e os sabores que mais saem, comparado com o período anterior.</p>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Vendas separadas por canal</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Quanto o iFood descontou de cada pedido</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Exportação em planilha</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="recursos"><div class="wrap">
+  <div class="sec-h"><p class="kick">Tudo num só lugar</p><h2>O que vem no OrderFlow para pizzaria</h2><p>Os recursos que a pizzaria usa no dia a dia, sem precisar de outro sistema.</p></div>
+  <div class="feat">
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L3 20h18z"/><circle cx="10" cy="14" r="1.2"/><circle cx="14" cy="16" r="1.2"/><circle cx="12" cy="10" r="1"/></svg></span><h3>Meio a meio</h3><p>Dois sabores na mesma pizza. O valor é o do sabor mais caro, calculado sozinho.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span><h3>Bordas, massas e adicionais</h3><p>Cada escolha soma ao preço e sai escrita na comanda.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16M5 11a7 7 0 0 1 14 0M4 15h16l-1 4H5z"/></svg></span><h3>Tamanhos e combos</h3><p>Broto, média e grande, cada um com o seu preço, e combos com pizza e bebida.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h3"/></svg></span><h3>Pix e cartão confirmados sozinhos</h3><p>O cliente paga no cardápio e o pedido aparece como pago. O dinheiro cai na conta da pizzaria.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18v11H3zM9 20v-6h6v6"/></svg></span><h3>Balcão, caixa, mesa e delivery</h3><p>Lance o pedido do balcão ou do telefone, cobre e imprima a comanda. Mesas e entregas no mesmo painel.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><h3>Taxa de entrega do seu jeito</h3><p>Fixa, grátis, por bairro ou por distância da loja, com pedido mínimo se quiser.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><h3>Nota fiscal NFC-e<span class="new">opcional</span></h3><p>Emita a nota do consumidor direto do pedido, com CPF na nota quando o cliente pedir.</p></article>
+    <article><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></span><h3>iFood, 99Food e Keeta</h3><p>Os pedidos dos apps entram no seu painel, sem um tablet para cada um. Integração incluída no plano.</p></article>
+  </div>
+</div></section>
+
+<section class="painel" id="comparar"><div class="wrap">
+  <div class="sec-h"><p class="kick">Comissão por pedido ou mensalidade fixa?</p><h2>Alternativa ao iFood sem comissão</h2><p>No seu cardápio próprio, o pedido é todo seu. E os apps continuam no mesmo painel, se você quiser.</p></div>
+  <div class="vs">
+    <div class="com">
+      <h3>App com comissão</h3>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#no"/></svg>Uma parte de cada pedido fica com o app</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#no"/></svg>Quanto mais você vende, mais você paga</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#no"/></svg>O dinheiro chega pelo repasse do app</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#no"/></svg>A marca e o cliente ficam com o app</li>
+      </ul>
+    </div>
+    <div class="of">
+      <h3><img src="../assets/brand/orderflow-icone-96.png" alt="" width="28" height="28" loading="lazy">OrderFlow</h3>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Sem comissão: o pedido é todo seu</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Mensalidade fixa, com pedidos ilimitados</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>O pagamento cai direto na conta da loja</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Cardápio com a sua marca e o cliente é seu</li>
+      </ul>
+    </div>
+  </div>
+  <p class="vs-note"><b>Não precisa sair do iFood.</b> Use os apps para ser encontrado e o seu cardápio para vender para quem já te conhece. Os pedidos dos dois caem no mesmo quadro.</p>
+  <p class="fine">As comissões e condições dos apps de delivery variam por plano e negociação. Taxas de cartão existem nos dois casos.</p>
+</div></section>
+
+<section class="vid dk" id="video"><div class="wrap">
+  <div>
+    <h2>Veja o OrderFlow em 30 segundos</h2>
+    <p>Do cliente abrindo o cardápio até o pedido chegar no painel, com o pagamento confirmado no caminho.</p>
+    <a class="btn" href="#contato">Quero ver com o meu cardápio</a>
+  </div>
+  <video controls muted playsinline preload="none" poster="../assets/video/orderflow-poster.webp" width="720" height="1280" aria-label="Vídeo de apresentação do OrderFlow"><source src="../assets/video/orderflow.mp4" type="video/mp4"></video>
+</div></section>
+
+<section id="preco"><div class="wrap">
+  <div class="sec-h"><p class="kick">Preço</p><h2>Um preço só, com tudo dentro</h2><p>Venda 10 ou 1.000 pedidos: o valor é o mesmo.</p></div>
+  <div class="plan">
+    <div class="plan-a">
+      <div class="nm">Plano completo</div>
+      <div class="amount" aria-label="149 reais e 80 centavos por mês"><small>R$</small><b>149</b><em>,80</em><span>/mês</span></div>
+      <p>no cartão de crédito (R$ 169,80 pagando por PIX) · pedidos ilimitados · sem fidelidade</p>
+      <p>Sem comissão por pedido.</p>
+      <a class="btn" href="#contato">Quero minha prévia grátis</a>
+    </div>
+    <div class="plan-b">
+      <ul>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Cardápio online com a sua marca</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Painel de pedidos</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Pix e cartão confirmados sozinhos</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>iFood, 99Food e Keeta no painel</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Salão e mesas com QR Code</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Encomendas com data e sinal</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Taxa por bairro ou distância</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Cupons de desconto</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Relatórios por canal</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Assistente com IA</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Implantação com a nossa ajuda</li>
+        <li><svg width="16" height="16" aria-hidden="true"><use href="#ok"/></svg>Suporte pelo WhatsApp</li>
+      </ul>
+      <div class="addons"><b>Opcionais, se precisar</b>
+        <p><span>Nota fiscal (NFC-e)</span><span>+ R$ 39,90/mês</span></p>
+        <p><span>Acesso de atendente</span><span>R$ 20/mês cada</span></p>
+      </div>
+      <p class="fine">Sem fidelidade e sem multa. Para cancelar, é só avisar com 60 dias.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="painel" id="comecar"><div class="wrap">
+  <div class="sec-h"><h2>Como começar</h2></div>
+  <ol class="steps3">
+    <li><h3>Peça a prévia grátis</h3><p>Você manda o cardápio, a logo e as informações da loja.</p></li>
+    <li><h3>A gente monta</h3><p>Em até 24 horas úteis o seu cardápio está pronto para você testar no celular.</p></li>
+    <li><h3>Divulgue o seu link</h3><p>No Instagram, no WhatsApp e com o QR Code no balcão e nas mesas.</p></li>
+  </ol>
+</div></section>
+
+<section class="contact" id="contato"><div class="wrap">
+  <div>
+    <p class="kick">Prévia grátis</p>
+    <h2>Peça a prévia do seu cardápio</h2>
+    <p class="lead3">Conte um pouco sobre a sua loja. Em até 24 horas úteis a gente te manda no WhatsApp a prévia montada com a sua marca, sem custo.</p>
+    <ul>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Você só assina se gostar</li>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>A gente cadastra o cardápio para você</li>
+      <li><svg width="18" height="18" aria-hidden="true"><use href="#ok"/></svg>Implantação online e suporte pelo WhatsApp</li>
+    </ul>
+  </div>
+  <form class="form" id="form" novalidate>
+    <div class="two">
+      <label>Seu nome<input id="f-nome" autocomplete="name" required></label>
+      <label>WhatsApp<input id="f-whats" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(11) 99999-9999" required></label>
+    </div>
+    <div class="two">
+      <label>Nome da loja<input id="f-estab" required></label>
+      <label>Cidade<input id="f-cidade" autocomplete="address-level2" placeholder="Sua cidade"></label>
+    </div>
+    <label>Tipo de loja<select id="f-seg"><option selected>Pizzaria</option><option>Hamburgueria</option><option>Restaurante / Lanchonete</option><option>Marmitaria</option><option>Doceria / Confeitaria</option><option>Açaí / Sorvetes</option><option>Padaria / Cafeteria</option><option>Bar / Adega</option><option>Açougue / Casa de carnes</option><option>Mercado / Hortifruti</option><option>Outro</option></select></label>
+    <label class="optin"><input type="checkbox" id="f-optin"><span>Quero receber novidades e ofertas do OrderFlow por WhatsApp e e-mail (opcional; você pode cancelar quando quiser)</span></label>
+    <label class="hp" aria-hidden="true">Site<input id="f-site" tabindex="-1" autocomplete="off"></label>
+    <div class="err" id="f-err" role="alert"></div>
+    <button class="btn" type="submit" id="f-btn">Quero minha prévia grátis</button>
+    <p class="note" style="text-align:center">Respondemos pelo WhatsApp em horário comercial.</p>
+    <p class="note">Ao enviar, você concorda com a <a href="../privacidade.html">Política de Privacidade</a>. Usamos seus dados só para falar com você sobre o OrderFlow.</p>
+    <div class="form-ok" id="f-ok" role="status" aria-live="polite">
+      <span class="ok-ico" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <h3 id="f-ok-t">Recebemos seu contato!</h3>
+      <p id="f-ok-p">Uma pessoa da equipe vai te chamar no WhatsApp em breve.</p>
+      <a class="btn wa" id="f-ok-wa" href="https://wa.me/551152171727" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+      <button type="button" class="again" id="f-again">Enviar outro contato</button>
+    </div>
+  </form>
+</div></section>
+
+<section id="perguntas"><div class="wrap">
+  <h2>Perguntas frequentes</h2>
+  <div class="faq">
+    <details><summary>Dá para fazer pizza meio a meio?</summary><p>Dá. O cliente escolhe os dois sabores, a borda e os adicionais no próprio cardápio. No meio a meio, o valor é o do sabor mais caro.</p></details>
+    <details><summary>Em quanto tempo a pizzaria entra no ar?</summary><p>Até 24 horas úteis depois que você envia o cardápio, a logo e as informações da loja. A gente monta e você revisa.</p></details>
+    <details><summary>Quanto custa?</summary><p>R$ 149,80/mês no cartão de crédito (R$ 169,80 pagando por PIX) · pedidos ilimitados · sem fidelidade. Sem comissão por pedido. A prévia do seu cardápio é grátis.</p></details>
+    <details><summary>Preciso sair do iFood?</summary><p>Não. Os pedidos do iFood, da 99Food e da Keeta entram no mesmo quadro, e você convida quem já é cliente a pedir direto com você, sem comissão.</p></details>
+    <details><summary>Dá trabalho mudar de sistema?</summary><p>Não. Você manda o cardápio, a logo e as fotos que tiver, e a gente cadastra tudo. Você só confere e divulga o link.</p></details>
+    <details><summary>O OrderFlow emite nota fiscal?</summary><p>Sim, como opcional (+ R$ 39,90 por mês): a NFC-e, emitida a partir do pedido. A loja precisa do certificado digital A1 e do CSC da Sefaz, e a gente ajuda a configurar.</p></details>
+    <details><summary>Como funciona o suporte?</summary><p>Pelo WhatsApp, com gente de verdade, para tirar dúvidas e ajustar a loja.</p></details>
+    <details><summary>Tem fidelidade?</summary><p>Não. Sem fidelidade e sem multa. Para cancelar, é só avisar com 60 dias.</p></details>
+  </div>
+  <p class="more">Veja também: <a href="../sistema-para-hamburgueria/">Hamburgueria</a><a href="../sistema-para-restaurante-com-mesas/">Restaurante com salão</a><a href="../cardapio-digital-para-doceria/">Doceria e encomendas</a><a href="../cardapio-digital-baixada-santista/">Baixada Santista</a><a href="../">Página inicial</a></p>
+</div></section>
+
+<section class="cta dk"><div class="wrap">
+  <h2>Veja a sua pizzaria funcionando antes de decidir</h2>
+  <p class="lead2">A gente monta a prévia do seu cardápio de graça, em até 24 horas úteis. Você só assina se gostar.</p>
+  <div class="ctas">
+    <a class="btn" href="#contato">Quero minha prévia grátis</a>
+    <a class="btn wa" href="https://wa.me/551152171727?text=Ol%C3%A1%21%20Tenho%20uma%20pizzaria%20e%20quero%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20card%C3%A1pio%20da%20minha%20loja." target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a>
+  </div>
+  <p class="price">A partir de R$ 149,80/mês · sem comissão · sem fidelidade</p>
+</div></section>
 </main>
 <footer><div class="wrap">© 2026 OrderFlow · HM17 Desenvolvimento de Software sob Encomenda LTDA · CNPJ 69.363.914/0001-13 · <a href="../privacidade.html">Privacidade</a> · <a href="../termos.html">Termos</a></div></footer>
 <script>
@@ -38,6 +553,85 @@ fetch('https://pedido.orderflow.tec.br/api/public/site-config').then(function(r)
   if(c.pixel){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',c.pixel);fbq('track','PageView');}
   if(c.ga){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+c.ga;document.head.appendChild(g);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',c.ga);}
 }).catch(function(){});
+</script>
+<script>
+/* Origem da visita (UTM, clique de anúncio) guardada para o formulário — mesma lógica da home */
+var OF_API='https://pedido.orderflow.tec.br';
+var ofSrc=(function(){
+  var k='of_src', saved={};
+  try{saved=JSON.parse(sessionStorage.getItem(k)||'{}')}catch(e){}
+  var p=new URLSearchParams(location.search), got={};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(n){var v=p.get(n);if(v)got[n]=v.slice(0,300)});
+  if(Object.keys(got).length||!saved.landing){
+    saved=Object.assign({},Object.keys(got).length?{}:saved,got,{landing:location.pathname+location.search,referrer:document.referrer&&document.referrer.indexOf(location.host)<0?document.referrer:(saved.referrer||'')});
+    try{sessionStorage.setItem(k,JSON.stringify(saved))}catch(e){}
+  }
+  return saved;
+})();
+function ofOrigem(){
+  var s=(ofSrc.utm_source||'').toLowerCase(), r=(ofSrc.referrer||'').toLowerCase();
+  if(ofSrc.gclid)return 'anúncio do Google';
+  if(ofSrc.fbclid&&/ig|insta/.test(s+r))return 'anúncio do Instagram';
+  if(ofSrc.fbclid)return 'anúncio do Facebook';
+  if(/^(ig|insta)/.test(s)||r.indexOf('instagram.')>=0)return 'Instagram';
+  if(/^(fb|face)/.test(s)||r.indexOf('facebook.')>=0)return 'Facebook';
+  if(/google/.test(s)||r.indexOf('google.')>=0)return 'Google';
+  if(/whats|wa/.test(s)||r.indexOf('whatsapp')>=0)return 'WhatsApp';
+  if(s)return s.slice(0,30);
+  if(r){try{return new URL(r).hostname.replace(/^www\./,'')}catch(e){}}
+  return 'site';
+}
+(function(){var o=ofOrigem();
+  document.querySelectorAll('a[href*="wa.me"][href*="text="]').forEach(function(a){
+    try{var u=new URL(a.href),t=u.searchParams.get('text')||'';if(t.indexOf('(vim pelo')<0)a.href=u.origin+u.pathname+'?text='+encodeURIComponent(t+' (vim pelo '+o+')')}catch(e){}
+  });
+})();
+/* Precisa existir antes do conversao.js (ele embrulha ofTrack e conta Lead como conversão) */
+function ofTrack(ev,params){try{if(window.fbq)fbq('track',ev,params||{});if(window.gtag)gtag('event',ev==='Lead'?'generate_lead':ev==='Contact'?'contact':ev.toLowerCase(),params||{})}catch(e){}}
+(function(){var seen=false,f=document.getElementById('form');
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){if(!seen&&es[0].isIntersecting){seen=true;ofTrack('ViewContent',{content_name:'formulario'})}},{threshold:.5}).observe(f);
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){a.addEventListener('click',function(){ofTrack('Contact')})});
+})();
+(function(){var w=document.getElementById('f-whats');
+  w.addEventListener('input',function(){
+    var d=w.value.replace(/\D/g,'');
+    if(d.length>11&&d.indexOf('55')===0)d=d.slice(2);
+    d=d.slice(0,11);
+    var o=d;
+    if(d.length>2)o='('+d.slice(0,2)+') '+d.slice(2);
+    if(d.length>6)o='('+d.slice(0,2)+') '+d.slice(2,d.length-4)+'-'+d.slice(-4);
+    w.value=o;
+  });
+})();
+/* Formulário → grava no painel (aba Marketing) e abre o WhatsApp */
+document.getElementById('form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var g=function(id){return document.getElementById(id).value.trim()};
+  var nome=g('f-nome'), whats=g('f-whats'), estab=g('f-estab'), err=document.getElementById('f-err');
+  if(!nome||!whats||!estab){err.textContent='Preencha seu nome, WhatsApp e o nome da loja.';(!nome?document.getElementById('f-nome'):!whats?document.getElementById('f-whats'):document.getElementById('f-estab')).focus();return}
+  var dig=whats.replace(/\D/g,'');
+  if(dig.length<10||dig.length>11||!/^[1-9]{2}/.test(dig)){err.textContent='Confira o WhatsApp com DDD.';document.getElementById('f-whats').focus();return}
+  err.textContent='';
+  var cidade=g('f-cidade');
+  var t='*Pedido de prévia pelo site (Pizzaria)*\n\n*Nome:* '+nome+'\n*WhatsApp:* '+whats+'\n*Loja:* '+estab+(cidade?'\n*Cidade:* '+cidade:'')+'\n*Segmento:* '+g('f-seg');
+  t+='\n*Origem:* '+ofOrigem();
+  // A página do formulário sempre aparece no lead (landing), mesmo se a visita começou em outra página
+  var aqui=location.pathname, src=Object.assign({},ofSrc);
+  if((src.landing||'').indexOf(aqui)!==0)src.landing=(aqui+' (entrada: '+(src.landing||'-')+')').slice(0,300);
+  var payload=Object.assign({name:nome,whatsapp:whats,business_name:estab,city:cidade,segment:g('f-seg'),website:g('f-site'),optin:document.getElementById('f-optin').checked},src);
+  try{fetch(OF_API+'/api/public/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true}).catch(function(){})}catch(x){}
+  ofTrack('Lead',{content_name:g('f-seg')});
+  function fmtTel(d){d=d.replace(/^55(?=\d{10,11}$)/,'');return d.length>=10?'('+d.slice(0,2)+') '+d.slice(2,d.length-4)+'‑'+d.slice(-4):d}
+  var wa='https://wa.me/551152171727?text='+encodeURIComponent(t);
+  var form=document.getElementById('form');
+  document.getElementById('f-ok-t').textContent='Recebemos seu contato, '+nome.split(/\s+/)[0]+'!';
+  document.getElementById('f-ok-p').textContent='Em até 24 horas úteis a gente te chama no WhatsApp '+fmtTel(dig)+' com a prévia do cardápio. Se quiser adiantar, já pode mandar o cardápio por aqui:';
+  document.getElementById('f-ok-wa').href=wa;
+  form.classList.add('sent');
+  form.scrollIntoView({behavior:'smooth',block:'center'});
+  window.open(wa,'_blank');
+});
+document.getElementById('f-again').addEventListener('click',function(){var f=document.getElementById('form');f.reset();f.classList.remove('sent');document.getElementById('f-nome').focus()});
 </script>
 <script src="../assets/conversao.js?v=1" defer></script>
 </body></html>
